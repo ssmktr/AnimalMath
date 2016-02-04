@@ -3,13 +3,6 @@ using System.Collections;
 
 public class MainDataScript : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	public SceneState SCENE = SceneState.GameReady;
+	public PopupState POPUP = PopupState.None;
 }
