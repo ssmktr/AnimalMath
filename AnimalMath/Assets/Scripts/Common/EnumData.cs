@@ -27,7 +27,7 @@ public enum PopupState
 
 public enum ItemList
 {
-	Clock,
+	Clock = 0,
 	Key,
 	Book,
 	Accuracy,
