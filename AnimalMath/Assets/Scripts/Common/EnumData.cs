@@ -62,3 +62,16 @@ public enum ItemList
 	Max
 }
 
+public enum PlayerState 
+{
+	Rhino,
+	Sheep,
+};
+
+public enum CalcMark
+{
+	Sum = 0,
+	Sub,
+	Mul,
+	Div,
+};
