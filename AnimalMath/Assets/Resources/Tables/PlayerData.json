@@ -1,0 +1,9 @@
+[
+    {
+      "PlayerType" : "Rhino",
+      "Life" : 1,
+      "Effect" : "None",
+      "Math" : "None",
+      "Passive" : "None"
+    }
+  ]

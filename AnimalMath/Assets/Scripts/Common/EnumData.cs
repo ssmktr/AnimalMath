@@ -25,6 +25,29 @@ public enum PopupState
 
 };
 
+public enum EffectSkillState
+{
+	None,
+	Accuracy,
+	Bomb,
+	RoseOfWinds,
+}
+
+public enum MathSkillState
+{
+	None,
+	Clock,
+	Key,
+	Book
+}
+public enum PassiveSkillState
+{
+	None,
+	MedalRibon,
+	Chect,
+	Heart
+}
+
 public enum ItemList
 {
 	Clock = 0,

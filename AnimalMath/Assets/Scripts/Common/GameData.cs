@@ -5,10 +5,10 @@ using System.Collections.Generic;
 
 public class GameData : MonoBehaviour {
 
-	public const int MAX_HEART = 20;
-	public const int MAX_GOLD = 99999;
-	public const int MAX_DP = 99999;
-	public const int MAX_HEARTTIME = 60 * 5;
+//	public const int MAX_HEART = 20;
+//	public const int MAX_GOLD = 99999;
+//	public const int MAX_DP = 99999;
+//	public const int MAX_HEARTTIME = 60 * 5;
 
 	public static Transform FindChild(Transform Root, string TargetName) {
 		Transform[] arrTran = Root.GetComponentsInChildren<Transform>();

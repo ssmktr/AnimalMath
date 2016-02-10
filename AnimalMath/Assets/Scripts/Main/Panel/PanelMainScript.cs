@@ -4,8 +4,12 @@ using System.Collections;
 public class PanelMainScript : PanelBaseScript {
 
 	// Use this for initialization
-	void Start () {
+	public override void OnInit ()
+	{
 		GameData.SetBtn(this.transform, "BtnGameReady","Press", this);
+	}
+	void Start () {
+		
 	}
 
 	public override void OnPress(GameObject oBtn){
