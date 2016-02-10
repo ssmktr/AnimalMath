@@ -84,8 +84,8 @@ public class PlayerScript : MonoBehaviour {
 	}
 	void CreatePopupQuest(){
 		MakeQuestNum (2);
+		m_sGame.bPause = true;
 		m_sGame.CameraResume (false);
-		Time.timeScale = 0;
 		GameObject oPopup = (GameObject)Instantiate (Resources.Load ("Game/Popup/PopupQuest"));
 		PopupQuestScript sPopup = oPopup.GetComponent<PopupQuestScript> ();
 		oPopup.name = "PopupQuest";
@@ -97,8 +97,8 @@ public class PlayerScript : MonoBehaviour {
 		sPopup.CallOk = PopupQuestCallOk;
 	}
 	void PopupQuestCallOk(){
-		Time.timeScale = 1;
 		m_sGame.CameraResume (true);
+		m_sGame.bPause = false;
 	}
 	void MakeQuestNum(int iCount){
 		ListNumber.Clear ();

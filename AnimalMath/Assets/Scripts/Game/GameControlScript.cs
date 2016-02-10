@@ -20,10 +20,12 @@ public class GameControlScript : MonoBehaviour {
 		CreateQuestion ();
 	}
 	void Update () {
-		if (!m_bQuestion) {
-			CreateQuestion ();
-		} else {
-			MoveQuest ();
+		if (!m_sGame.bPause) {
+			if (!m_bQuestion) {
+				CreateQuestion ();
+			} else {
+				MoveQuest ();
+			}
 		}
 	}
 	void CreateQuestion(){

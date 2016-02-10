@@ -11,6 +11,7 @@ public class PopupQuestScript : MonoBehaviour {
 	private List<int> ListResult = new List<int>();
 	private UILabel m_tResult;
 	private bool m_bMinus = false;
+	private float m_fLimitTime = 10.0f;
 
 	public void SetPlayer(PlayerScript player){
 		m_sPlayer = player;
@@ -31,20 +32,24 @@ public class PopupQuestScript : MonoBehaviour {
 		}
 		m_tResult = this.transform.FindChild ("tResult").GetComponent<UILabel> ();
 		SetQuest ();
+		InitLimitTime ();
 	}
 	void Update () {
 	}
+	void Exit(){
+		if (QuestSuccess ()) {
+			Debug.Log ("Win");
+		} else {
+			Debug.Log ("Lose");
+		}
+		if (null != CallOk) {
+			CallOk ();
+		}
+		Destroy (this.gameObject);
+	}
 	void Press(GameObject oBtn){
 		if ("BtnOk" == oBtn.name) {
-			if (QuestSuccess ()) {
-				Debug.Log ("Win");
-			} else {
-				Debug.Log ("Lose");
-			}
-			if (null != CallOk) {
-				CallOk ();
-			}
-			Destroy (this.gameObject);
+			Exit ();
 		} else if ("BtnClear" == oBtn.name) {
 			ListResult.Clear ();
 			ViewResult ();
@@ -120,5 +125,21 @@ public class PopupQuestScript : MonoBehaviour {
 			return false;
 		}
 		return true;
+	}
+	void InitLimitTime(){
+		m_fLimitTime = 10.0f;
+		StartCoroutine (ViewTime ());
+	}
+	IEnumerator ViewTime(){
+		UILabel tLimitTime = this.transform.FindChild ("tLimitTime").GetComponent<UILabel> ();
+		while (0 < m_fLimitTime) {
+			m_fLimitTime -= 1;
+			if (0 >= m_fLimitTime) {
+				m_fLimitTime = 0;
+				Exit ();
+			}
+			tLimitTime.text = string.Format ("{0}", (int)m_fLimitTime);
+			yield return new WaitForSeconds (1.0f);
+		}
 	}
 }
