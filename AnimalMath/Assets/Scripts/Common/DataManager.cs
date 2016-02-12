@@ -10,10 +10,13 @@ public class DataManager : Singleton<DataManager> {
 	public List<EnemyData> AllEnemyData = new List<EnemyData>();
 
 	public void LoadEnemyData(){
-		for (EnemyState eState = 0; eState < EnemyState.Max; ++eState) {
+		AllEnemyData.Clear ();
+		TextAsset JsonData = (TextAsset)Resources.Load ("Tables/EnemyData");
+		JsonData GetData = JsonMapper.ToObject (JsonData.ToString ());
+		for (int i = 0; i < GetData.Count; ++i) {
 			EnemyData eData = new EnemyData ();
-			eData.eType = eState;
-			eData.MoveSpeed = 1.0f;
+			eData.eType = (EnemyState)Enum.Parse (typeof(EnemyState), GetData [i] ["type"].ToString ());
+			eData.MoveSpeed = float.Parse (GetData [i] ["movespeed"].ToString ());
 			AllEnemyData.Add (eData);
 		}
 	}

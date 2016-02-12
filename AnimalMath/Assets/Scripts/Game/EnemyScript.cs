@@ -9,6 +9,9 @@ public class EnemyScript : MonoBehaviour {
 	}
 	void Update () {
 	}
+	public EnemyData GetEnemyData {
+		get{ return m_eData; }
+	}
 	public void SetData(EnemyData eData){
 		m_eData = eData;
 	}
@@ -19,10 +22,4 @@ public class EnemyScript : MonoBehaviour {
 		oEnemy.transform.localPosition = Vector3.zero;
 		oEnemy.transform.localScale = Vector3.one;
 	}
-//	void OnTriggerEnter(Collider oCol){
-//		if ("Player" == oCol.transform.tag) {
-//			Debug.Log ("Collision Enemy");
-//			Destroy (this.gameObject);
-//		}
-//	}
 }

@@ -72,13 +72,6 @@ public class GameControlScript : MonoBehaviour {
 					oEnemy.GetComponent<EnemyScript> ().Init ();
 					ListEnemy.Add (oEnemy);
 				}
-			} else {
-				if (0 < ListEnemy.Count) {
-					for (int i = 0; i < ListEnemy.Count; ++i) {
-						Destroy (ListEnemy [i]);
-					}
-					ListEnemy.Clear ();
-				}
 			}
 			yield return new WaitForSeconds (2.0f);
 		}
@@ -88,7 +81,11 @@ public class GameControlScript : MonoBehaviour {
 			for (int i = 0; i < ListEnemy.Count; ++i) {
 				float fPosX = ListEnemy [i].transform.localPosition.x;
 				float fPosY = ListEnemy [i].transform.localPosition.y;
-				ListEnemy [i].transform.localPosition = new Vector3 (fPosX - Time.deltaTime * m_fMoveSpeed, fPosY, 0.0f);
+				EnemyData eData = ListEnemy [i].GetComponent<EnemyScript> ().GetEnemyData;
+				ListEnemy [i].transform.localPosition = new Vector3 (
+					fPosX - Time.deltaTime * m_fMoveSpeed * eData.MoveSpeed, 
+					fPosY, 
+					0.0f);
 
 				if (-800.0f > fPosX) {
 					Destroy (ListEnemy [i]);
@@ -115,5 +112,13 @@ public class GameControlScript : MonoBehaviour {
 
 	public void OnQuestDestroy(){
 		m_bQuestion = false;
+	}
+	public void OnAllEnemyDestroy(){
+		if (0 < ListEnemy.Count) {
+			for (int i = 0; i < ListEnemy.Count; ++i) {
+				Destroy (ListEnemy [i]);
+			}
+			ListEnemy.Clear ();
+		}
 	}
 }
