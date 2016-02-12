@@ -7,14 +7,14 @@ using System.Collections.Generic;
 using LitJson;
 
 public class DataManager : Singleton<DataManager> {
+	public List<EnemyData> AllEnemyData = new List<EnemyData>();
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	public void LoadEnemyData(){
+		for (EnemyState eState = 0; eState < EnemyState.Max; ++eState) {
+			EnemyData eData = new EnemyData ();
+			eData.eType = eState;
+			eData.MoveSpeed = 1.0f;
+			AllEnemyData.Add (eData);
+		}
 	}
 }

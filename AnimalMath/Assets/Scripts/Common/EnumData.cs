@@ -75,3 +75,13 @@ public enum CalcMark
 	Mul,
 	Div,
 };
+
+public enum EnemyState{
+	Crow = 0,
+	Mouse,
+	Peacock,
+	Rattlesnake,
+	Snail,
+	MoveSnake,
+	Max
+};

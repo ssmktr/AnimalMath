@@ -14,7 +14,6 @@ public class MainManagerScript : MonoBehaviour
 	void Start ()
 	{
 		PanelInit ();
-
 	}
 
 	void Update ()
