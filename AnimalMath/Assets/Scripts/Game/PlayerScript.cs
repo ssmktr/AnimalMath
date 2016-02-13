@@ -179,4 +179,8 @@ public class PlayerScript : MonoBehaviour {
 			m_iResult = (int)fResult;
 		}
 	}
+	public void QuestFail(){
+		GameManager.Instance.playerData.nLife--;
+		m_sGame.m_sGameUi.ViewGameLife ();
+	}
 }
