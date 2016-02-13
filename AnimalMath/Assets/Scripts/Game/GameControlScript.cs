@@ -19,6 +19,9 @@ public class GameControlScript : MonoBehaviour {
 		ENEMY = (GameObject)Resources.Load ("Game/Enemy");
 	}
 	void Start () {
+		if (!GameManager.Instance.bGameLogin) {
+			return;
+		}
 		DataManager.Instance.LoadEnemyData ();
 		m_bQuestion = false;
 		m_oQuest = null;
@@ -26,6 +29,9 @@ public class GameControlScript : MonoBehaviour {
 		StartCoroutine (CreateEnemy ());
 	}
 	void Update () {
+		if (!GameManager.Instance.bGameLogin) {
+			return;
+		}
 		if (!m_sGame.bPause) {
 			if (!m_bQuestion) {
 				CreateQuestion ();

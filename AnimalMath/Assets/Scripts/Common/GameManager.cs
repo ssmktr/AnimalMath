@@ -5,7 +5,8 @@ using System.Collections;
 using LitJson;
 
 public class GameManager : Singleton<GameManager>
-{
+{	
+	public bool bGameLogin = false;
 	public PlayerState ePlayerState = PlayerState.Rhino;
 	public PlayerData playerData = new PlayerData ();
 	public OptionData optionData = new OptionData ();
