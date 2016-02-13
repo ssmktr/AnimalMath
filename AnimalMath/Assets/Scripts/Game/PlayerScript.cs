@@ -92,7 +92,7 @@ public class PlayerScript : MonoBehaviour {
 		}
 	}
 	void CreatePopupQuest(){
-		MakeQuestNum (m_iResultCount);
+		QuestResult ();
 		m_sGame.bPause = true;
 		m_sGame.CameraResume (false);
 		GameObject oPopup = (GameObject)Instantiate (Resources.Load ("Game/Popup/PopupQuest"));
@@ -109,74 +109,59 @@ public class PlayerScript : MonoBehaviour {
 		m_sGame.CameraResume (true);
 		m_sGame.bPause = false;
 	}
-	void MakeQuestNum(int iCount){
-		ListNumber.Clear ();
-		for (int i = 0; i < iCount; ++i) {
-			ListNumber.Add (UnityEngine.Random.Range(1, 10));
-		}
-		MakeQuestCalcMark (iCount - 1);
-	}
-	void MakeQuestCalcMark(int iCount){
-		ListMark.Clear ();
-		for (int i = 0; i < iCount; ++i) {
-			CalcMark eMark = (CalcMark)UnityEngine.Random.Range (0, 4);
-			ListMark.Add (eMark);
-		}
-		QuestResult ();
-	}
 	void QuestResult(){
-		List<int> listNumber = new List<int>();
-		List<CalcMark> listMark = new List<CalcMark>();
-		for (int i = 0; i < ListNumber.Count; ++i) {
-			listNumber.Add (ListNumber[i]);
-		}
-		for (int i = 0; i < ListMark.Count; ++i) {
-			listMark.Add (ListMark [i]);
-		}
-		m_iResult = 0;
-		float fResult = 0.0f;
+		ListNumber.Clear ();
+		ListMark.Clear ();
 		bool bRemain = false;
-		for (int i = 0; i < listMark.Count; ++i) {
-			switch (listMark [i]) {
+		m_iResult = 0;
+		int iNum0 = UnityEngine.Random.Range(1, 10);
+		int iNum1 = UnityEngine.Random.Range(1, 10);
+		CalcMark eMark0 = (CalcMark)UnityEngine.Random.Range (0, 4);
+		if (2 == m_iResultCount) {
+			iNum0 = UnityEngine.Random.Range(1, 10);
+			iNum1 = UnityEngine.Random.Range(1, 10);
+		} else if (3 == m_iResultCount) {
+			iNum0 = UnityEngine.Random.Range(1, 100);
+			iNum1 = UnityEngine.Random.Range(1, 100);
+		} else if (4 == m_iResultCount) {
+			iNum0 = UnityEngine.Random.Range(1, 1000);
+			iNum1 = UnityEngine.Random.Range(1, 1000);
+		} 
+		switch (eMark0) {
 			case CalcMark.Sum:
 				{
-					fResult = listNumber [0] + listNumber [1];
+				m_iResult = iNum0 + iNum1;
 				}
 				break;
 			case CalcMark.Sub:
 				{
-					fResult = listNumber [0] - listNumber [1];
+				m_iResult = iNum0 - iNum1;
 				}
 				break;
 			case CalcMark.Mul:
 				{
-					fResult = listNumber [0] * listNumber [1];
+				m_iResult = iNum0 * iNum1;
 				}
 				break;
 			case CalcMark.Div:
 				{
-					fResult = listNumber [0] / listNumber [1];
-					if (0 != (listNumber [0] % listNumber [1])) {
+				m_iResult = iNum0 / iNum1;
+				if (0 != (iNum0 % iNum1)) {
 						bRemain = true;
 					}
-					if (0 != (listNumber [1] % listNumber [0])) {
+				if (0 != (iNum1 % iNum0)) {
 						bRemain = true;
 					}
 				}
 				break;
 			}
-			if (bRemain) {
-				break;
-			} else {
-				listMark.RemoveAt(0);
-				listNumber.RemoveAt(1);
-				listNumber [0] = (int)fResult;
-			}
-		}
+
 		if (bRemain) {
-			MakeQuestNum (m_iResultCount);
+			QuestResult ();
 		} else {
-			m_iResult = (int)fResult;
+			ListNumber.Add (iNum0);
+			ListNumber.Add (iNum1);
+			ListMark.Add (eMark0);
 		}
 	}
 	public void QuestFail(){

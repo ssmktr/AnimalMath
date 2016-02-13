@@ -6,6 +6,7 @@ public class TItleScript : MonoBehaviour {
 
 	void Start () {
 		GameManager.Instance.bGameLogin = true;
+		LoadData ();
 		GameData.SetBtn (this.transform, "Back", "Press", this);
 	}
 	void Update () {
@@ -14,5 +15,8 @@ public class TItleScript : MonoBehaviour {
 		if ("Back" == oBtn.name) {
 			SceneManager.LoadScene ("Main");
 		}
+	}
+	void LoadData(){
+		DataManager.Instance.LoadData();
 	}
 }

@@ -57,7 +57,6 @@ public class PopupQuestScript : MonoBehaviour {
 	void Press(GameObject oBtn){
 		if ("BtnOk" == oBtn.name) {
 			Exit ();
-			Debug.Log (m_sPlayer.GetResult);
 		} else if ("BtnClear" == oBtn.name) {
 			ListResult.Clear ();
 			ViewResult ();

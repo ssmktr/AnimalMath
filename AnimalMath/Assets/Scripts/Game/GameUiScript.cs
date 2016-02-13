@@ -25,6 +25,9 @@ public class GameUiScript : MonoBehaviour {
 	void Update () {
 	}
 	void Press(GameObject oBtn){
+		if (0 >= GameManager.Instance.playerData.nLife) {
+			return;
+		}
 		if ("GameSkill" == oBtn.name) {
 			UseGameSkill ();
 		} else if ("BtnPause" == oBtn.name) {

@@ -110,7 +110,7 @@ public class GameControlScript : MonoBehaviour {
 			if (80.0f > Dist) {
 				Destroy (ListEnemy [i].gameObject);
 				ListEnemy.RemoveAt (i);
-				Debug.Log ("Player Collision");
+				m_sGame.m_sPlayer.QuestFail ();
 				break;
 			}
 		}

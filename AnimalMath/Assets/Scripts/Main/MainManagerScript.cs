@@ -14,8 +14,6 @@ public class MainManagerScript : MonoBehaviour
 	void Start ()
 	{
 		PanelInit ();
-
-		DataManager.Instance.LoadData();
 	}
 
 	void Update ()
