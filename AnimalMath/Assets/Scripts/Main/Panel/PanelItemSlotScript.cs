@@ -21,7 +21,7 @@ public class PanelItemSlotScript : PanelBaseScript {
 	}
 	public override void OnInit ()
 	{
-		Debug.Log("OnInit");
+		Debug.Log("PanelItemSlotScript : OnInit");
 
 		string sEffect = "";
 		string sMath = "";
@@ -106,6 +106,25 @@ public class PanelItemSlotScript : PanelBaseScript {
 			}
 			this.transform.FindChild(name).GetComponent<UISprite>().spriteName = "BtnRed";
 			OnPassiveSelected(name);
+		}
+	}
+
+	public void ResetEffectButton()
+	{
+		foreach (Transform item in dicEffect.Values) {
+			item.GetComponent<UISprite>().spriteName = "BtnGreen";
+		}
+	}
+	public void ResetMathButton()
+	{
+		foreach (Transform item in dicMath.Values) {
+			item.GetComponent<UISprite>().spriteName = "BtnGreen";
+		}
+	}
+	public void ResetPassiveButton()
+	{
+		foreach (Transform item in dicPassive.Values) {
+			item.GetComponent<UISprite>().spriteName = "BtnGreen";
 		}
 	}
 		
