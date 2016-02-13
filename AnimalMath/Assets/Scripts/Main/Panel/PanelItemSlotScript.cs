@@ -15,7 +15,7 @@ public class PanelItemSlotScript : PanelBaseScript
 
 	void Awake ()
 	{
-		Debug.Log ("Init");
+//		Debug.Log ("Init");
 		OnInit ();
 	}
 
@@ -32,7 +32,7 @@ public class PanelItemSlotScript : PanelBaseScript
 		for (SkillState i = SkillState.Accuracy; i < SkillState.MAX; i++) {
 			item = dicSkill[i];
 			item.transform.FindChild("Icon").GetComponent<UISprite>().spriteName = i.ToString();
-			Debug.Log("data price" + DataManager.Instance.dicSkillData[i].Price.ToString());
+//			Debug.Log("data price" + DataManager.Instance.dicSkillData[i].Price.ToString());
 			if(DataManager.Instance.dicSkillData[i].Price.ToString() != "")
 			{
 				item.transform.FindChild("Sprite").GetComponentInChildren<UILabel>().text = DataManager.Instance.dicSkillData[i].Price.ToString();	

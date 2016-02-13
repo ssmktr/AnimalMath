@@ -8,6 +8,9 @@ using LitJson;
 public class PanelReadyScript : PanelBaseScript
 {
 	private PanelItemSlotScript itemSlotScript;
+	private UISprite spriteEffect;
+	private UISprite spriteMath;
+	private UISprite spritePassive;
 	private Dictionary<string, Transform> dicStage = new Dictionary<string, Transform>();
 	private Dictionary<string, Transform> dicSlot = new Dictionary<string, Transform>();
 
@@ -19,6 +22,10 @@ public class PanelReadyScript : PanelBaseScript
 	public override void OnInit ()
 	{
 		itemSlotScript = this.transform.GetComponentInChildren<PanelItemSlotScript>();
+		spriteEffect = this.transform.FindChild("SlotEffect").transform.FindChild("Sprite").GetComponent<UISprite>();
+		spriteMath = this.transform.FindChild("SlotMath").transform.FindChild("Sprite").GetComponent<UISprite>();
+		spritePassive = this.transform.FindChild("SlotPassive").transform.FindChild("Sprite").GetComponent<UISprite>();
+
 		PanelItemSlotScript.OnEffectSelected += OnEffectSelected;
 		PanelItemSlotScript.OnMathSelected += OnMathSelected;
 		PanelItemSlotScript.OnPassiveSelected += OnPassiveSelected;
@@ -40,9 +47,9 @@ public class PanelReadyScript : PanelBaseScript
 			InitLevel();
 			InitButtons();
 		}
-		Debug.Log("BeforeinitDic" + dicStage.Count);
+//		Debug.Log("BeforeinitDic" + dicStage.Count);
 		if(dicStage.Count > 0) return;
-		Debug.Log("initDic" + dicStage.Count);
+//		Debug.Log("initDic" + dicStage.Count);
 		dicStage.Add("BtnEasy", this.transform.FindChild("BtnEasy"));
 		dicStage.Add("BtnNormal", this.transform.FindChild("BtnNormal"));
 		dicStage.Add("BtnHard", this.transform.FindChild("BtnHard"));
@@ -123,21 +130,24 @@ public class PanelReadyScript : PanelBaseScript
 		Debug.Log("EffectSetNone");
 		itemSlotScript.ResetEffectButton();
 		GameManager.Instance.playerData.Effect = new SkillData();
-		this.transform.FindChild("SlotEffect").transform.FindChild("Sprite").gameObject.SetActive(false);
+//		this.transform.FindChild("SlotEffect").transform.FindChild("Sprite").gameObject.SetActive(false);
+		spriteEffect.alpha = 0.0f;
 	}
 	void RemoveMathItem()
 	{
 		Debug.Log("MathSetNone");	
 		itemSlotScript.ResetMathButton();
 		GameManager.Instance.playerData.Math = new SkillData();
-		this.transform.FindChild("SlotMath").transform.FindChild("Sprite").gameObject.SetActive(false);
+		spriteMath.alpha = 0.0f;
+//		this.transform.FindChild("SlotMath").transform.FindChild("Sprite").gameObject.SetActive(false);
 	}
 	void RemovePassiveItem()
 	{
 		Debug.Log("passiveSetNone");
 		itemSlotScript.ResetPassiveButton();
 		GameManager.Instance.playerData.Passive = new SkillData();
-		this.transform.FindChild("SlotPassive").transform.FindChild("Sprite").gameObject.SetActive(false);
+		spritePassive.alpha = 0.0f;
+//		this.transform.FindChild("SlotPassive").transform.FindChild("Sprite").gameObject.SetActive(false);
 	}
 	void CheckData()
 	{
@@ -166,22 +176,22 @@ public class PanelReadyScript : PanelBaseScript
 
 	void OnEffectSelected(SkillState state)
 	{
-		SetSlot(state, "SlotEffect");
+		SetSlot(state, spriteEffect);
 	}
 	void OnMathSelected(SkillState state)
 	{
-		SetSlot(state, "SlotMath");
+		SetSlot(state, spriteMath);
 	}
 	void OnPassiveSelected(SkillState state)
 	{
-		SetSlot(state, "SlotPassive");
+		SetSlot(state, spritePassive);
 	}
-	void SetSlot(SkillState state, string name)
+	void SetSlot(SkillState state, UISprite sprite)
 	{
-		UISprite sprite = this.transform.FindChild(name).transform.FindChild("Sprite").GetComponent<UISprite>();
 		sprite.spriteName = state.ToString();
 		sprite.color = Color.black;
-		sprite.gameObject.SetActive(true);
+//		sprite.gameObject.SetActive(true);
+		sprite.alpha = 1.0f;
 //		sprite.localSize = new Vector2(50,50);
 		sprite.width = 50;
 		sprite.height = 50;
