@@ -28,22 +28,31 @@ public class PanelMainScript : PanelBaseScript {
 	}
 	void onOption()
 	{
-		StartCoroutine(openOption());
+		TweenPosition tp = new TweenPosition();
+		tp.from = oBG.transform.position;
+		tp.to = new Vector3(oBG.transform.position.x -50,oBG.transform.position.y,oBG.transform.position.z);
+		tp.style = UITweener.Style.Once;        // there's also PingPong (back and forth) and Loop (when reaches end, goes back to start)
+		tp.method = UITweener.Method.EaseIn;    // there's also BounceIn, BounceOut, EaseOut, etc
+//		tp.onFinished += myHandler;
+		tp.duration = 0.5f;
+//		StartCoroutine(openOption());
 	}
 
 	IEnumerator openOption()
 	{
 		bIsOptionOpen = !bIsOptionOpen;
-		oBG.transform.position = new Vector3(oBG.transform.position.x - 50,
+		oBG.transform.Translate(new Vector3(oBG.transform.position.x - 50,
 			oBG.transform.position.y,
-			oBG.transform.position.z);
-		oEffect.transform.position = new Vector3(oEffect.transform.position.x - 25,
+			oBG.transform.position.z));
+		oEffect.transform.Translate(new Vector3(oEffect.transform.position.x - 25,
 			oEffect.transform.position.y,
-			oEffect.transform.position.z);
-		yield return new WaitForSeconds(0.5f);
+			oEffect.transform.position.z));
+		Debug.Log("coroution IN");
+		yield return new WaitForSeconds(1.0f);
 	}
 
 	// Update is called once per frame
 	void Update () {
+		
 	}
 }

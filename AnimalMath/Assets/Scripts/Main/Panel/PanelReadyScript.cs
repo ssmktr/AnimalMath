@@ -174,14 +174,17 @@ public class PanelReadyScript : PanelBaseScript
 	void OnEffectSelected(SkillState state)
 	{
 		SetSlot(state, spriteEffect);
+		GameManager.Instance.playerData.Effect = DataManager.Instance.dicSkillData[state];
 	}
 	void OnMathSelected(SkillState state)
 	{
 		SetSlot(state, spriteMath);
+		GameManager.Instance.playerData.Math = DataManager.Instance.dicSkillData[state];
 	}
 	void OnPassiveSelected(SkillState state)
 	{
 		SetSlot(state, spritePassive);
+		GameManager.Instance.playerData.Passive = DataManager.Instance.dicSkillData[state];
 	}
 	void SetSlot(SkillState state, UISprite sprite)
 	{
@@ -192,7 +195,6 @@ public class PanelReadyScript : PanelBaseScript
 //		sprite.localSize = new Vector2(50,50);
 		sprite.width = 50;
 		sprite.height = 50;
-		GameManager.Instance.playerData.Passive = DataManager.Instance.dicSkillData[state];
 	}
 	public override void OnExit ()
 	{
