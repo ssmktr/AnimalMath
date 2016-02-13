@@ -189,11 +189,11 @@ public class PanelReadyScript : PanelBaseScript
 	{
 		this.transform.FindChild("SlotPassive").GetComponentInChildren<UILabel>().text = name;
 		if (name == "Passive1") {
-			GameManager.Instance.playerData.ePassive = PassiveSkillState.Heart;	
+			GameManager.Instance.playerData.ePassive = PassiveSkillState.Life;	
 		} else if(name == "Passive2"){
-			GameManager.Instance.playerData.ePassive = PassiveSkillState.Chect;
+			GameManager.Instance.playerData.ePassive = PassiveSkillState.Chest;
 		} else if(name == "Passive3"){
-			GameManager.Instance.playerData.ePassive = PassiveSkillState.MedalRibon;
+			GameManager.Instance.playerData.ePassive = PassiveSkillState.MedalRibbon;
 		}
 	}
 
