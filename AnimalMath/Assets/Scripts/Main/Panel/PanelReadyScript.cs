@@ -120,19 +120,19 @@ public class PanelReadyScript : PanelBaseScript
 	{
 		Debug.Log("EffectSetNone");
 		itemSlotScript.ResetEffectButton();
-		GameManager.Instance.playerData.eEffect = EffectSkillState.None;
+		GameManager.Instance.playerData.Effect = new SkillData();
 	}
 	void RemoveMathItem()
 	{
 		Debug.Log("MathSetNone");	
 		itemSlotScript.ResetMathButton();
-		GameManager.Instance.playerData.eMath = MathSkillState.None;
+		GameManager.Instance.playerData.Math = new SkillData();
 	}
 	void RemovePassiveItem()
 	{
 		Debug.Log("passiveSetNone");
 		itemSlotScript.ResetPassiveButton();
-		GameManager.Instance.playerData.ePassive = PassiveSkillState.None;
+		GameManager.Instance.playerData.Passive = new SkillData();
 	}
 	void CheckData()
 	{
@@ -140,7 +140,8 @@ public class PanelReadyScript : PanelBaseScript
 
 //		Debug.Log("{0}{1}{2}{3}",data.eEffect.ToString(), data.eMath.ToString(), data.ePassive.ToString(),data.eStageLevel.ToString());
 
-		Debug.Log(data.eEffect.ToString() + data.eMath.ToString() + data.ePassive.ToString() + data.ePlayerType.ToString() + data.eStageLevel.ToString());
+		Debug.Log(data.Effect.Name.ToString() + "/"+ data.Math.Name.ToString() + "/"+ data.Passive.Name.ToString() + "/"+ 
+			data.ePlayerType.ToString() + "/"+ data.eStageLevel.ToString());
 
 	}
 
@@ -161,40 +162,21 @@ public class PanelReadyScript : PanelBaseScript
 		}
 	}
 
-	void OnEffectSelected(string name)
+	void OnEffectSelected(SkillState state)
 	{
-		Debug.Log(name);
-		this.transform.FindChild("SlotEffect").GetComponentInChildren<UILabel>().text = name;
-
-		if (name == "Effect1") {
-			GameManager.Instance.playerData.eEffect = EffectSkillState.Accuracy;	
-		} else if(name == "Effect2"){
-			GameManager.Instance.playerData.eEffect = EffectSkillState.Bomb;
-		} else if(name == "Effect3"){
-			GameManager.Instance.playerData.eEffect = EffectSkillState.RoseOfWinds;
-		}
+		Debug.Log(state);
+		this.transform.FindChild("SlotEffect").GetComponentInChildren<UILabel>().text = state.ToString();
+		GameManager.Instance.playerData.Effect = DataManager.Instance.dicSkillData[state];
 	}
-	void OnMathSelected(string name)
+	void OnMathSelected(SkillState state)
 	{
-		this.transform.FindChild("SlotMath").GetComponentInChildren<UILabel>().text = name;
-		if (name == "MathEffect1") {
-			GameManager.Instance.playerData.eMath = MathSkillState.Clock;	
-		} else if(name == "MathEffect2"){
-			GameManager.Instance.playerData.eMath = MathSkillState.Book;
-		} else if(name == "MathEffect3"){
-			GameManager.Instance.playerData.eMath = MathSkillState.Key;
-		}
+		this.transform.FindChild("SlotMath").GetComponentInChildren<UILabel>().text = state.ToString();
+		GameManager.Instance.playerData.Math = DataManager.Instance.dicSkillData[state];
 	}
-	void OnPassiveSelected(string name)
+	void OnPassiveSelected(SkillState state)
 	{
-		this.transform.FindChild("SlotPassive").GetComponentInChildren<UILabel>().text = name;
-		if (name == "Passive1") {
-			GameManager.Instance.playerData.ePassive = PassiveSkillState.Life;	
-		} else if(name == "Passive2"){
-			GameManager.Instance.playerData.ePassive = PassiveSkillState.Chest;
-		} else if(name == "Passive3"){
-			GameManager.Instance.playerData.ePassive = PassiveSkillState.MedalRibbon;
-		}
+		this.transform.FindChild("SlotPassive").GetComponentInChildren<UILabel>().text = state.ToString();
+		GameManager.Instance.playerData.Passive = DataManager.Instance.dicSkillData[state];
 	}
 
 	public override void OnExit ()

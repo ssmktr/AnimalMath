@@ -48,6 +48,29 @@ public enum PassiveSkillState
 	Life
 }
 
+public enum SkillState
+{
+	None,
+	Accuracy,
+	Bomb,
+	RoseOfWinds,
+	Clock,
+	Key,
+	Book,
+	MedalRibbon,
+	Chest,
+	Life,
+	MAX
+};
+
+public enum SkillType
+{
+None,
+	Effect,
+	Math,
+	Passive
+};
+
 public enum PlayerState
 {
 	Rhino,

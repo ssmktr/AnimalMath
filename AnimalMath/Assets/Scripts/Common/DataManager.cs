@@ -7,8 +7,15 @@ using System.Collections.Generic;
 using LitJson;
 
 public class DataManager : Singleton<DataManager> {
+	
 	public List<EnemyData> AllEnemyData = new List<EnemyData>();
+	public List<SkillData> AllSkillData = new List<SkillData>();
+	public Dictionary<SkillState, SkillData> dicSkillData = new Dictionary<SkillState, SkillData>();
 
+	public void LoadData()
+	{
+		LoadSkillData();
+	}
 	public void LoadOptionData(){
 		string strOption = PlayerPrefs.GetString("OPTION");
 		Debug.Log("LoadOptionData : " + strOption);
@@ -18,7 +25,20 @@ public class DataManager : Singleton<DataManager> {
 			GameManager.Instance.optionData.SoundEffect = bool.Parse(GetData["SoundEffect"].ToString());
 		}
 	}
-
+	public void LoadSkillData(){
+		AllSkillData.Clear ();
+		TextAsset JsonData = (TextAsset)Resources.Load ("Tables/SkillData");
+		JsonData GetData = JsonMapper.ToObject (JsonData.ToString ());
+		for (int i = 0; i < GetData.Count; ++i) {
+			SkillData eData = new SkillData ();
+			eData.Name = (SkillState)Enum.Parse(typeof(SkillState), GetData[i]["name"].ToString());
+			eData.Type = (SkillType)Enum.Parse(typeof(SkillType), GetData[i]["type"].ToString());
+			eData.Price = int.Parse(GetData[i]["price"].ToString());
+			eData.Guide = GetData[i]["guide"].ToString();
+			AllSkillData.Add(eData);
+			dicSkillData.Add(eData.Name, eData);
+		}
+	}
 
 	#region LOAD_DATA_SAMPLE
 //	public void LoadData(){

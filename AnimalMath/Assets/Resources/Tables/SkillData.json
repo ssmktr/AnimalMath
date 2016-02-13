@@ -1,0 +1,56 @@
+[
+    {
+      "name" : "Life",
+      "type" : "Passive",
+      "price" : 1000,
+      "guide" : "목숨 1추가"
+    },
+    {
+      "name" : "Chest",
+      "type" : "Passive",
+      "price" : 2000,
+      "guide" : "골드 획득 2배"
+    },
+    {
+      "name" : "MedalRibbon",
+      "type" : "Passive",
+      "price" : 3000,
+      "guide" : "스코어 2배"
+    },
+    {
+      "name" : "RoseOfWinds",
+      "type" : "Effect",
+      "price" : 1000,
+      "guide" : "모든 적 사격"
+    },
+    {
+      "name" : "Bomb",
+      "type" : "Effect",
+      "price" : 2000,
+      "guide" : "지상 적군 1마리 사격"
+    },
+    {
+      "name" : "Accuracy",
+      "type" : "Effect",
+      "price" : 3000,
+      "guide" : "까마귀 사격"
+    },
+    {
+      "name" : "Book",
+      "type" : "Math",
+      "price" : 1000,
+      "guide" : "문제 패스"
+    },
+    {
+      "name" : "Key",
+      "type" : "Math",
+      "price" : 2000,
+      "guide" : "정답 1의 자리 보여주기"
+    },
+    {
+      "name" : "Clock",
+      "type" : "Math",
+      "price" : 3000,
+      "guide" : "1문제 풀이 시간 늘리기"
+    }
+  ]
