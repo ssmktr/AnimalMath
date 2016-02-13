@@ -8,7 +8,7 @@ public class GameScript : MonoBehaviour {
 	public PlayerScript m_sPlayer = null;
 	public GameControlScript m_sGameControl = null;
 	public GameUiScript m_sGameUi = null;
-	private bool m_bPause = false;
+	private bool m_bPause = true;
 	public bool bPause {
 		get{ return m_bPause; }
 		set{ m_bPause = value; }

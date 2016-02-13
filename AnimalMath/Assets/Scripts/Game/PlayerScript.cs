@@ -63,6 +63,7 @@ public class PlayerScript : MonoBehaviour {
 		if (BASE_POSX < m_fPosX) {
 			m_fPosX = BASE_POSX;
 			m_ePlayerState = PlayerState.Run;
+			m_sGame.bPause = false;
 		}
 	}
 	void KeyPress(){
