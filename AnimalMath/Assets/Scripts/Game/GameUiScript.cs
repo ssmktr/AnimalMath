@@ -37,8 +37,8 @@ public class GameUiScript : MonoBehaviour {
 		GameData.SetBtn (this.transform, "PassiveSkill", "Press", this);
 	}
 	void ViewSkillIcon(){
-		m_oGameSkill.transform.FindChild ("Skill").GetComponent<UISprite> ().spriteName = GameManager.Instance.playerData.eEffect.ToString ();
-		m_oPassiveSkill.transform.FindChild ("Skill").GetComponent<UISprite> ().spriteName = GameManager.Instance.playerData.ePassive.ToString ();
+		m_oGameSkill.transform.FindChild ("Skill").GetComponent<UISprite> ().spriteName = GameManager.Instance.playerData.Effect.Name.ToString ();
+		m_oPassiveSkill.transform.FindChild ("Skill").GetComponent<UISprite> ().spriteName = GameManager.Instance.playerData.Passive.Name.ToString ();
 		m_oGameSkill.transform.FindChild ("Skill").GetComponent<UISprite> ().MakePixelPerfect ();
 		m_oPassiveSkill.transform.FindChild ("Skill").GetComponent<UISprite> ().MakePixelPerfect ();
 	}

@@ -40,7 +40,7 @@ public class PopupQuestScript : MonoBehaviour {
 	}
 	void ViewSkill(){
 		GameObject oSkill = this.transform.FindChild ("QuestSkill").gameObject;
-		oSkill.transform.FindChild ("Skill").GetComponent<UISprite> ().spriteName = GameManager.Instance.playerData.eMath.ToString ();
+		oSkill.transform.FindChild ("Skill").GetComponent<UISprite> ().spriteName = GameManager.Instance.playerData.Math.Name.ToString ();
 	}
 	void Update () {
 	}
@@ -68,7 +68,7 @@ public class PopupQuestScript : MonoBehaviour {
 			int iNum = int.Parse(oBtn.name.Replace ("BtnNumber", ""));
 			InputResult (iNum);
 		} else if(oBtn.name.Contains("QuestSkill")) {
-			GameManager.Instance.playerData.eMath = MathSkillState.None;
+			GameManager.Instance.playerData.Math.Name = SkillState.None;
 			ViewSkill ();
 		}
 	}
