@@ -18,6 +18,10 @@ public class MainManagerScript : MonoBehaviour
 
 	void Start ()
 	{
+		if (!GameManager.Instance.bGameLogin) {
+			SceneManager.LoadScene ("Title");
+			return;
+		}
 		PanelInit ();
 	}
 
