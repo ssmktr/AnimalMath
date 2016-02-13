@@ -1,10 +1,19 @@
 ﻿using UnityEngine;
+using System.IO;
+using System.Text;
 using System.Collections;
+using LitJson;
 
 public class GameManager : Singleton<GameManager> {
 	public PlayerState ePlayerState = PlayerState.Rhino;
+	public PlayerData playerData = new PlayerData();
 	#region SAVE_DATA
-
+	public void SaveOptionData(){
+		StringBuilder sb = new StringBuilder();
+		JsonWriter save = new JsonWriter(sb);
+		save.WriteObjectStart();
+		save.WritePropertyName();
+	}
 
 	#endregion
 
