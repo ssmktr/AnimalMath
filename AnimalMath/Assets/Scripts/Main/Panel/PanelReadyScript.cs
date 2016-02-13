@@ -13,14 +13,16 @@ public class PanelReadyScript : PanelBaseScript
 
 	void Awake()
 	{
+		
+
+	}
+	public override void OnInit ()
+	{
 		itemSlotScript = this.transform.GetComponentInChildren<PanelItemSlotScript>();
 		PanelItemSlotScript.OnEffectSelected += OnEffectSelected;
 		PanelItemSlotScript.OnMathSelected += OnMathSelected;
 		PanelItemSlotScript.OnPassiveSelected += OnPassiveSelected;
 
-	}
-	public override void OnInit ()
-	{
 		Debug.Log("PanelReadyScript : OnInit");
 		GameData.SetBtn (this.transform, "BtnEasy", "Press", this);
 		GameData.SetBtn (this.transform, "BtnNormal", "Press", this);
