@@ -2,7 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 using LitJson;
 
 public class PanelReadyScript : PanelBaseScript
@@ -75,7 +75,7 @@ public class PanelReadyScript : PanelBaseScript
 		} else if (oBtn.name == "BtnGameStart") {
 //			Debug.Log ("Start");
 			CheckData();
-			EditorSceneManager.LoadScene("Game");
+			SceneManager.LoadScene("Game");
 		} else if (oBtn.name == "BtnClose"){
 			m_sManager.SetScene(SceneState.Main);
 		} else if (oBtn.name == "SlotEffect"){
