@@ -121,28 +121,28 @@ public class PanelReadyScript : PanelBaseScript
 		Debug.Log("EffectSetNone");
 		itemSlotScript.ResetEffectButton();
 		GameManager.Instance.playerData.Effect = new SkillData();
+		this.transform.FindChild("SlotEffect").transform.FindChild("Sprite").gameObject.SetActive(false);
 	}
 	void RemoveMathItem()
 	{
 		Debug.Log("MathSetNone");	
 		itemSlotScript.ResetMathButton();
 		GameManager.Instance.playerData.Math = new SkillData();
+		this.transform.FindChild("SlotMath").transform.FindChild("Sprite").gameObject.SetActive(false);
 	}
 	void RemovePassiveItem()
 	{
 		Debug.Log("passiveSetNone");
 		itemSlotScript.ResetPassiveButton();
 		GameManager.Instance.playerData.Passive = new SkillData();
+		this.transform.FindChild("SlotPassive").transform.FindChild("Sprite").gameObject.SetActive(false);
 	}
 	void CheckData()
 	{
 		PlayerData data = GameManager.Instance.playerData;
 
-//		Debug.Log("{0}{1}{2}{3}",data.eEffect.ToString(), data.eMath.ToString(), data.ePassive.ToString(),data.eStageLevel.ToString());
-
 		Debug.Log(data.Effect.Name.ToString() + "/"+ data.Math.Name.ToString() + "/"+ data.Passive.Name.ToString() + "/"+ 
 			data.ePlayerType.ToString() + "/"+ data.eStageLevel.ToString());
-
 	}
 
 	void LevelSelected(string name)
@@ -164,21 +164,27 @@ public class PanelReadyScript : PanelBaseScript
 
 	void OnEffectSelected(SkillState state)
 	{
-		Debug.Log(state);
-		this.transform.FindChild("SlotEffect").GetComponentInChildren<UILabel>().text = state.ToString();
-		GameManager.Instance.playerData.Effect = DataManager.Instance.dicSkillData[state];
+		SetSlot(state, "SlotEffect");
 	}
 	void OnMathSelected(SkillState state)
 	{
-		this.transform.FindChild("SlotMath").GetComponentInChildren<UILabel>().text = state.ToString();
-		GameManager.Instance.playerData.Math = DataManager.Instance.dicSkillData[state];
+		SetSlot(state, "SlotMath");
 	}
 	void OnPassiveSelected(SkillState state)
 	{
-		this.transform.FindChild("SlotPassive").GetComponentInChildren<UILabel>().text = state.ToString();
+		SetSlot(state, "SlotPassive");
+	}
+	void SetSlot(SkillState state, string name)
+	{
+		UISprite sprite = this.transform.FindChild(name).transform.FindChild("Sprite").GetComponent<UISprite>();
+		sprite.spriteName = state.ToString();
+		sprite.color = Color.black;
+		sprite.gameObject.SetActive(true);
+//		sprite.localSize = new Vector2(50,50);
+		sprite.width = 50;
+		sprite.height = 50;
 		GameManager.Instance.playerData.Passive = DataManager.Instance.dicSkillData[state];
 	}
-
 	public override void OnExit ()
 	{
 		

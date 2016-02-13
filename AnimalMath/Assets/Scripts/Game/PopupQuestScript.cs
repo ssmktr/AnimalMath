@@ -67,10 +67,7 @@ public class PopupQuestScript : MonoBehaviour {
 			int iNum = int.Parse(oBtn.name.Replace ("BtnNumber", ""));
 			InputResult (iNum);
 		} else if(oBtn.name.Contains("QuestSkill")) {
-<<<<<<< HEAD
-=======
 			UseSkill ();
->>>>>>> c9dae424a69b6622895b8c129b0fbc164ba3fdd9
 			GameManager.Instance.playerData.Math.Name = SkillState.None;
 			ViewSkill ();
 		}

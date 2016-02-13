@@ -6,6 +6,7 @@ public class TItleScript : MonoBehaviour {
 
 	void Start () {
 		GameManager.Instance.bGameLogin = true;
+		DataManager.Instance.LoadData();
 		GameData.SetBtn (this.transform, "Back", "Press", this);
 	}
 	void Update () {

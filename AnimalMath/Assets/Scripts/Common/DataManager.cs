@@ -27,6 +27,7 @@ public class DataManager : Singleton<DataManager> {
 	}
 	public void LoadSkillData(){
 		AllSkillData.Clear ();
+		Debug.Log("LoadSkillData");
 		TextAsset JsonData = (TextAsset)Resources.Load ("Tables/SkillData");
 		JsonData GetData = JsonMapper.ToObject (JsonData.ToString ());
 		for (int i = 0; i < GetData.Count; ++i) {

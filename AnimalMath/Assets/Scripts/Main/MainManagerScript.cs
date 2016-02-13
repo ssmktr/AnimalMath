@@ -11,11 +11,15 @@ public class MainManagerScript : MonoBehaviour
 
 	public MainDataScript MainData;
 
+	void Awake()
+	{
+//		DataManager.Instance.LoadData();
+	}
+
 	void Start ()
 	{
 		PanelInit ();
 
-		DataManager.Instance.LoadData();
 	}
 
 	void Update ()

@@ -11,10 +11,6 @@ public class PanelItemSlotScript : PanelBaseScript
 	public static event OnSelected OnMathSelected;
 	public static event OnSelected OnPassiveSelected;
 
-
-	private Dictionary<string, Transform> dicEffect = new Dictionary<string, Transform> ();
-	private Dictionary<string, Transform> dicMath = new Dictionary<string, Transform> ();
-	private Dictionary<string, Transform> dicPassive = new Dictionary<string, Transform> ();
 	private Dictionary<SkillState, Transform> dicSkill = new Dictionary<SkillState, Transform> ();
 
 	void Awake ()
@@ -27,25 +23,21 @@ public class PanelItemSlotScript : PanelBaseScript
 	{
 		Debug.Log ("PanelItemSlotScript : OnInit");
 
-		string sEffect = "";
-		string sMath = "";
-		string sPassive = "";
 		for (SkillState i = SkillState.Accuracy; i < SkillState.MAX; i++) {
 			GameData.SetBtn (this.transform, i.ToString (), "Press", this);
 			dicSkill.Add (i, this.transform.FindChild (i.ToString()));
 		}
-//		for (int i = 0; i < 3; i++) {
-//			sEffect = string.Format("Effect{0}",i+1);
-//			sMath = string.Format("MathEffect{0}",i+1);
-//			sPassive = string.Format("Passive{0}",i+1);
-//			Debug.Log(sEffect);
-//			GameData.SetBtn(this.transform, sEffect, "Press", this);
-//			GameData.SetBtn(this.transform, sMath, "Press", this);
-//			GameData.SetBtn(this.transform, sPassive, "Press", this);
-//			dicEffect.Add(sEffect , this.transform.FindChild(sEffect));
-//			dicMath.Add(sMath, this.transform.FindChild(sMath));
-//			dicPassive.Add(sPassive, this.transform.FindChild(sPassive));
-//		}
+		Transform item;
+
+		for (SkillState i = SkillState.Accuracy; i < SkillState.MAX; i++) {
+			item = dicSkill[i];
+			item.transform.FindChild("Icon").GetComponent<UISprite>().spriteName = i.ToString();
+			Debug.Log("data price" + DataManager.Instance.dicSkillData[i].Price.ToString());
+			if(DataManager.Instance.dicSkillData[i].Price.ToString() != "")
+			{
+				item.transform.FindChild("Sprite").GetComponentInChildren<UILabel>().text = DataManager.Instance.dicSkillData[i].Price.ToString();	
+			}
+		}
 	}
 
 	public override void OnPress (GameObject oBtn)
@@ -107,23 +99,23 @@ public class PanelItemSlotScript : PanelBaseScript
 
 	public void ResetEffectButton ()
 	{
-		dicSkill [SkillState.Accuracy].GetComponent<UISprite> ().spriteName = "BtnGreen";
-		dicSkill [SkillState.Bomb].GetComponent<UISprite> ().spriteName = "BtnGreen";
-		dicSkill [SkillState.RoseOfWinds].GetComponent<UISprite> ().spriteName = "BtnGreen";
+		dicSkill [SkillState.Accuracy].GetComponent<UISprite> ().spriteName = "CheckBoxRect";
+		dicSkill [SkillState.Bomb].GetComponent<UISprite> ().spriteName = "CheckBoxRect";
+		dicSkill [SkillState.RoseOfWinds].GetComponent<UISprite> ().spriteName = "CheckBoxRect";
 	}
 
 	public void ResetMathButton ()
 	{
-		dicSkill [SkillState.Clock].GetComponent<UISprite> ().spriteName = "BtnGreen";
-		dicSkill [SkillState.Book].GetComponent<UISprite> ().spriteName = "BtnGreen";
-		dicSkill [SkillState.Key].GetComponent<UISprite> ().spriteName = "BtnGreen";
+		dicSkill [SkillState.Clock].GetComponent<UISprite> ().spriteName = "CheckBoxRect";
+		dicSkill [SkillState.Book].GetComponent<UISprite> ().spriteName = "CheckBoxRect";
+		dicSkill [SkillState.Key].GetComponent<UISprite> ().spriteName = "CheckBoxRect";
 	}
 
 	public void ResetPassiveButton ()
 	{
-		dicSkill [SkillState.Life].GetComponent<UISprite> ().spriteName = "BtnGreen";
-		dicSkill [SkillState.Chest].GetComponent<UISprite> ().spriteName = "BtnGreen";
-		dicSkill [SkillState.MedalRibbon].GetComponent<UISprite> ().spriteName = "BtnGreen";
+		dicSkill [SkillState.Life].GetComponent<UISprite> ().spriteName = "CheckBoxRect";
+		dicSkill [SkillState.Chest].GetComponent<UISprite> ().spriteName = "CheckBoxRect";
+		dicSkill [SkillState.MedalRibbon].GetComponent<UISprite> ().spriteName = "CheckBoxRect";
 	}
 
 
