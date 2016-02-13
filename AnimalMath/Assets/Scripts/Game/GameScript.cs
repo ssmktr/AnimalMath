@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameScript : MonoBehaviour {
 	private GameObject m_oCamera;
@@ -13,6 +14,10 @@ public class GameScript : MonoBehaviour {
 		set{ m_bPause = value; }
 	}
 	void Start () {
+		if (!GameManager.Instance.bGameLogin) {
+			SceneManager.LoadScene ("Title");
+			return;
+		}
 		SetObject ();
 		m_sBackLoop = GameData.FindChild (this.transform, "Frest").GetComponent<BackLoop> ();
 		m_sGameControl = m_oCamera.transform.FindChild ("GameControl").GetComponent<GameControlScript> ();

@@ -13,6 +13,9 @@ public class BackLoop : MonoBehaviour {
 		m_mBack = this.GetComponent<Material> ();
 	}
 	void Update () {
+		if (!GameManager.Instance.bGameLogin) {
+			return;
+		}
 		if (!m_sGame.bPause) {
 			m_fOffsetX += m_fLoopSpeed * Time.deltaTime;
 			if (1 < m_fOffsetX) {

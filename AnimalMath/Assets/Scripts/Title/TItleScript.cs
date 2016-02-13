@@ -5,6 +5,7 @@ using System.Collections;
 public class TItleScript : MonoBehaviour {
 
 	void Start () {
+		GameManager.Instance.bGameLogin = true;
 		GameData.SetBtn (this.transform, "Back", "Press", this);
 	}
 	void Update () {
