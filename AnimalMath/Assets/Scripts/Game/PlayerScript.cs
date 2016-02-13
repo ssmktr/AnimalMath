@@ -79,6 +79,7 @@ public class PlayerScript : MonoBehaviour {
 		if ("Quest" == oCol.transform.tag) {
 			m_sGame.m_sGameControl.OnQuestDestroy ();
 			Destroy (oCol.gameObject);
+			m_sGame.m_sGameControl.OnAllEnemyDestroy ();
 			CreatePopupQuest ();
 		}
 	}

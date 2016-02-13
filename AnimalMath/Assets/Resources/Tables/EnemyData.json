@@ -1,0 +1,6 @@
+[{"type":"Crow","movespeed":1},
+{"type":"Mouse","movespeed":2},
+{"type":"Peacock","movespeed":1.5},
+{"type":"Rattlesnake","movespeed":1},
+{"type":"Snail","movespeed":0.8},
+{"type":"MoveSnake","movespeed":1}]
