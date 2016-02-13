@@ -9,6 +9,50 @@ using LitJson;
 public class DataManager : Singleton<DataManager> {
 	public List<EnemyData> AllEnemyData = new List<EnemyData>();
 
+	public void LoadOptionData(){
+		string strOption = PlayerPrefs.GetString("OPTION");
+		Debug.Log("LoadOptionData : " + strOption);
+		if("" != strOption){
+			JsonData GetData = JsonMapper.ToObject (strOption);
+			GameManager.Instance.optionData.SoundBG = bool.Parse(GetData["SoundBG"].ToString());
+			GameManager.Instance.optionData.SoundEffect = bool.Parse(GetData["SoundEffect"].ToString());
+		}
+	}
+
+
+	#region LOAD_DATA_SAMPLE
+//	public void LoadData(){
+//		LoadEnemy ();
+//		LoadMyAnimal ();
+//		LoadShopData ();
+//		LoadInventoryData();
+//	}
+//	public void LoadLoing(){
+//		string strLogin = PlayerPrefs.GetString ("LOGIN");
+//		if ("" != strLogin) {
+//			JsonData GetData = JsonMapper.ToObject (strLogin);
+//			GameManager.Instance.Level = int.Parse (GetData ["userlv"].ToString ());
+//			GameManager.Instance.NickName = GetData ["nickname"].ToString();
+//			GameManager.Instance.Gold = int.Parse (GetData ["gold"].ToString ());
+//			GameManager.Instance.Dp = int.Parse (GetData ["dp"].ToString ());
+//			GameManager.Instance.Heart = int.Parse (GetData ["heart"].ToString ());
+//			GameManager.Instance.LoginTime = DateTime.Parse (GetData ["logintime"].ToString ());
+//			GameManager.Instance.LogoutTime = DateTime.Parse (GetData ["logouttime"].ToString ());
+//			GameManager.Instance.fHeartTime = float.Parse (GetData ["hearttime"].ToString ());
+//			if (null != GameManager.Instance.CurAnimal) {
+//				JsonData GetCurAnimal = GetData ["curanimal"];
+//				GameManager.Instance.CurAnimal.iId = GetCurAnimal ["id"].ToString ();
+//				GameManager.Instance.CurAnimal.Name = GetCurAnimal ["name"].ToString ();
+//				GameManager.Instance.CurAnimal.Type = (AnimalType)Enum.Parse(typeof(AnimalType), GetCurAnimal ["type"].ToString ());
+//				GameManager.Instance.CurAnimal.Hp = float.Parse(GetCurAnimal ["hp"].ToString ());
+//				GameManager.Instance.CurAnimal.Atk = float.Parse(GetCurAnimal ["atk"].ToString ());
+//				GameManager.Instance.CurAnimal.Asp = float.Parse(GetCurAnimal ["asp"].ToString ());
+//				GameManager.Instance.CurAnimal.Life = int.Parse(GetCurAnimal ["life"].ToString ());
+//			}
+//		}
+//	}
+	#endregion
+
 	public void LoadEnemyData(){
 		AllEnemyData.Clear ();
 		TextAsset JsonData = (TextAsset)Resources.Load ("Tables/EnemyData");

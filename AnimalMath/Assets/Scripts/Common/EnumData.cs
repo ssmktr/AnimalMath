@@ -6,18 +6,17 @@ public enum SoundState
 	Button01 = 0,
 	Button02,
 	Button03,
-	Max
-};
+	Max}
+;
 
 public enum SceneState
 {
-//	Title,
+	//	Title,
 	Main,
 	GameReady,
-//	GameStart,
-	Max
-
-};
+	//	GameStart,
+	Max}
+;
 
 public enum PopupState
 {
@@ -40,6 +39,7 @@ public enum MathSkillState
 	Key,
 	Book
 }
+
 public enum PassiveSkillState
 {
 	None,
@@ -48,24 +48,17 @@ public enum PassiveSkillState
 	Heart
 }
 
-public enum ItemList
-{
-	Clock = 0,
-	Key,
-	Book,
-	Accuracy,
-	Bomb,
-	RoseOfWinds,
-	MedalRibbon,
-	Chect,
-	Heart,
-	Max
-}
-
-public enum PlayerState 
+public enum PlayerState
 {
 	Rhino,
 	Sheep,
+};
+
+public enum StageLevel
+{
+	Easy,
+	Normal,
+	Hard
 };
 
 public enum CalcMark
@@ -76,12 +69,13 @@ public enum CalcMark
 	Div,
 };
 
-public enum EnemyState{
+public enum EnemyState
+{
 	Crow = 0,
 	Mouse,
 	Peacock,
 	Rattlesnake,
 	Snail,
 	MoveSnake,
-	Max
-};
+	Max}
+;
