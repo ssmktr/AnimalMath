@@ -43,9 +43,9 @@ public enum MathSkillState
 public enum PassiveSkillState
 {
 	None,
-	MedalRibon,
-	Chect,
-	Heart
+	MedalRibbon,
+	Chest,
+	Life
 }
 
 public enum PlayerState
