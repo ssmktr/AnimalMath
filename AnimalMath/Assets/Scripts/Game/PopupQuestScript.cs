@@ -25,6 +25,9 @@ public class PopupQuestScript : MonoBehaviour {
 		GameData.SetBtn (oNumberControl.transform, "BtnClear", "Press", this);
 		GameData.SetBtn (oNumberControl.transform, "BtnMinus", "Press", this);
 		GameData.SetBtn (oNumberControl.transform, "BtnOk", "Press", this);
+		GameData.SetBtn (this.transform, "QuestSkill", "Press", this);
+
+
 		for (int i = 0; i < 10; ++i) {
 			GameObject oNumber = oNumberControl.transform.FindChild ("BtnNumber" + i).gameObject;
 			oNumber.transform.FindChild ("Number").GetComponent<UISprite> ().spriteName = "Num" + i;
@@ -33,6 +36,11 @@ public class PopupQuestScript : MonoBehaviour {
 		m_tResult = this.transform.FindChild ("tResult").GetComponent<UILabel> ();
 		SetQuest ();
 		InitLimitTime ();
+		ViewSkill ();
+	}
+	void ViewSkill(){
+		GameObject oSkill = this.transform.FindChild ("QuestSkill").gameObject;
+		oSkill.transform.FindChild ("Skill").GetComponent<UISprite> ().spriteName = GameManager.Instance.playerData.eMath.ToString ();
 	}
 	void Update () {
 	}
@@ -59,6 +67,9 @@ public class PopupQuestScript : MonoBehaviour {
 		} else if(oBtn.name.Contains("BtnNumber")) {
 			int iNum = int.Parse(oBtn.name.Replace ("BtnNumber", ""));
 			InputResult (iNum);
+		} else if(oBtn.name.Contains("QuestSkill")) {
+			GameManager.Instance.playerData.eMath = MathSkillState.None;
+			ViewSkill ();
 		}
 	}
 	void SetQuest(){

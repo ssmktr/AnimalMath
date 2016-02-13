@@ -8,6 +8,7 @@ public class PlayerScript : MonoBehaviour {
 	private List<int> ListNumber = new List<int>();
 	private List<CalcMark> ListMark = new List<CalcMark>();
 	private int m_iResult = 0;
+	private int m_iResultCount = 2;
 
 	private enum PlayerState{
 		Start,
@@ -30,6 +31,13 @@ public class PlayerScript : MonoBehaviour {
 		get{ return m_iResult; }
 	}
 	void Start () {
+		if (StageLevel.Hard == GameManager.Instance.playerData.eStageLevel) {
+			m_iResultCount = 2;
+		} else if (StageLevel.Hard == GameManager.Instance.playerData.eStageLevel) {
+			m_iResultCount = 3;
+		} else if (StageLevel.Hard == GameManager.Instance.playerData.eStageLevel) {
+			m_iResultCount = 4;
+		}
 		SetPlayer ();
 	}
 	void Update () {
@@ -84,14 +92,14 @@ public class PlayerScript : MonoBehaviour {
 		}
 	}
 	void CreatePopupQuest(){
-		MakeQuestNum (2);
+		MakeQuestNum (m_iResultCount);
 		m_sGame.bPause = true;
 		m_sGame.CameraResume (false);
 		GameObject oPopup = (GameObject)Instantiate (Resources.Load ("Game/Popup/PopupQuest"));
 		PopupQuestScript sPopup = oPopup.GetComponent<PopupQuestScript> ();
 		oPopup.name = "PopupQuest";
 		oPopup.transform.parent = m_sGame.transform;
-		oPopup.transform.localPosition = Vector3.zero;
+		oPopup.transform.localPosition = new Vector3 (0.0f, -50.0f, 0.0f);
 		oPopup.transform.localScale = Vector3.one;
 		sPopup.SetPlayer (this);
 		sPopup.SetQuest (ListNumber, ListMark);
@@ -166,7 +174,7 @@ public class PlayerScript : MonoBehaviour {
 			}
 		}
 		if (bRemain) {
-			MakeQuestNum (2);
+			MakeQuestNum (m_iResultCount);
 		} else {
 			m_iResult = (int)fResult;
 		}

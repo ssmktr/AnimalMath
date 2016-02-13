@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerData{
 
 	public PlayerState ePlayerType = PlayerState.Rhino;
-	public int nLife = 0;
+	public int nLife = 1;
 	public StageLevel eStageLevel = StageLevel.Easy;
 	public EffectSkillState eEffect = EffectSkillState.None;
 	public MathSkillState eMath = MathSkillState.None;
