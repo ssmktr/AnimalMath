@@ -57,6 +57,7 @@ public class PopupQuestScript : MonoBehaviour {
 	void Press(GameObject oBtn){
 		if ("BtnOk" == oBtn.name) {
 			Exit ();
+			Debug.Log (m_sPlayer.GetResult);
 		} else if ("BtnClear" == oBtn.name) {
 			ListResult.Clear ();
 			ViewResult ();
@@ -143,7 +144,7 @@ public class PopupQuestScript : MonoBehaviour {
 	}
 	IEnumerator ViewTime(){
 		UILabel tLimitTime = this.transform.FindChild ("tLimitTime").GetComponent<UILabel> ();
-		while (0 < m_fLimitTime) {
+		while (0 <= m_fLimitTime) {
 			m_fLimitTime -= Time.deltaTime;
 			if (0 >= m_fLimitTime) {
 				m_fLimitTime = 0;

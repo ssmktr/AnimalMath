@@ -31,9 +31,9 @@ public class PlayerScript : MonoBehaviour {
 		get{ return m_iResult; }
 	}
 	void Start () {
-		if (StageLevel.Hard == GameManager.Instance.playerData.eStageLevel) {
+		if (StageLevel.Easy == GameManager.Instance.playerData.eStageLevel) {
 			m_iResultCount = 2;
-		} else if (StageLevel.Hard == GameManager.Instance.playerData.eStageLevel) {
+		} else if (StageLevel.Normal == GameManager.Instance.playerData.eStageLevel) {
 			m_iResultCount = 3;
 		} else if (StageLevel.Hard == GameManager.Instance.playerData.eStageLevel) {
 			m_iResultCount = 4;

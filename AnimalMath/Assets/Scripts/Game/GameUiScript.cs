@@ -26,9 +26,7 @@ public class GameUiScript : MonoBehaviour {
 	}
 	void Press(GameObject oBtn){
 		if ("GameSkill" == oBtn.name) {
-			m_oGameSkill.transform.FindChild ("Skill").GetComponent<UISprite> ().spriteName = "None";
-		} else if ("PassiveSkill" == oBtn.name) {
-			m_oPassiveSkill.transform.FindChild ("Skill").GetComponent<UISprite> ().spriteName = "None";
+			UseGameSkill ();
 		} else if ("BtnPause" == oBtn.name) {
 			m_sGame.CreatePopupPause ();
 		}
@@ -54,5 +52,10 @@ public class GameUiScript : MonoBehaviour {
 		m_oPassiveSkill.transform.FindChild ("Skill").GetComponent<UISprite> ().spriteName = GameManager.Instance.playerData.Passive.Name.ToString ();
 		m_oGameSkill.transform.FindChild ("Skill").GetComponent<UISprite> ().MakePixelPerfect ();
 		m_oPassiveSkill.transform.FindChild ("Skill").GetComponent<UISprite> ().MakePixelPerfect ();
+	}
+	void UseGameSkill(){
+		m_sGame.m_sGameControl.UseGameSkill (GameManager.Instance.playerData.Effect.Name);
+		GameManager.Instance.playerData.Effect.Name = SkillState.None;
+		m_oGameSkill.transform.FindChild ("Skill").GetComponent<UISprite> ().spriteName = GameManager.Instance.playerData.Effect.Name.ToString();
 	}
 }

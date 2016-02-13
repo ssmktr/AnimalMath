@@ -127,4 +127,29 @@ public class GameControlScript : MonoBehaviour {
 			ListEnemy.Clear ();
 		}
 	}
+	public void UseGameSkill(SkillState eState){
+		if (SkillState.RoseOfWinds == eState) {
+			for (int i = 0; i < ListEnemy.Count; ++i) {
+				Destroy (ListEnemy[i]);
+			}
+			ListEnemy.Clear ();
+		} else {
+			for (int i = 0; i < ListEnemy.Count; ++i) {
+				EnemyData eData = ListEnemy [i].GetComponent<EnemyScript> ().GetEnemyData;
+				if (SkillState.Accuracy == eState) {
+					if (EnemyState.Crow == eData.eType) {
+						Destroy (ListEnemy [i]);
+						ListEnemy.RemoveAt (i);
+						break;
+					}
+				} else if (SkillState.Bomb == eState) {
+					if (EnemyState.Crow != eData.eType) {
+						Destroy (ListEnemy [i]);
+						ListEnemy.RemoveAt (i);
+						break;
+					}
+				}
+			}
+		}
+	}
 }
