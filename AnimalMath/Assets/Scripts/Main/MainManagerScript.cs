@@ -19,7 +19,10 @@ public class MainManagerScript : MonoBehaviour
 	void Start ()
 	{
 		PanelInit ();
+<<<<<<< HEAD
 
+=======
+>>>>>>> a701e24c5d110c157f9f67c71c519c376543c117
 	}
 
 	void Update ()

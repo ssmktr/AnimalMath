@@ -29,6 +29,12 @@ public class GameScript : MonoBehaviour {
 		m_sGameUi.SetManager (this);
 	}
 	void Update () {
+		if (0 >= GameManager.Instance.playerData.nLife) {
+			if (!bPause) {
+				bPause = true;
+				CreatePopupResult ();
+			}
+		}
 	}
 	void SetObject(){
 		m_oCamera = this.transform.FindChild ("Camera").gameObject;
@@ -47,6 +53,18 @@ public class GameScript : MonoBehaviour {
 		GameObject oPopup = (GameObject)Instantiate (Resources.Load ("Game/Popup/PopupPause"));
 		PopupPauseScript sPopup = oPopup.GetComponent<PopupPauseScript> ();
 		oPopup.name = "PopupPause";
+		oPopup.transform.parent = this.transform;
+		oPopup.transform.localPosition = Vector3.zero;
+		oPopup.transform.localScale = Vector3.one;
+		sPopup.SetManager (this);
+		sPopup.Init ();
+	}
+	public void CreatePopupResult(){
+		bPause = true;
+		CameraResume (false);
+		GameObject oPopup = (GameObject)Instantiate (Resources.Load ("Game/Popup/PopupResult"));
+		PopupResultScript sPopup = oPopup.GetComponent<PopupResultScript> ();
+		oPopup.name = "PopupResult";
 		oPopup.transform.parent = this.transform;
 		oPopup.transform.localPosition = Vector3.zero;
 		oPopup.transform.localScale = Vector3.one;

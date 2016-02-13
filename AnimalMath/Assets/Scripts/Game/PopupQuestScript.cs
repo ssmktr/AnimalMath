@@ -143,7 +143,7 @@ public class PopupQuestScript : MonoBehaviour {
 	}
 	IEnumerator ViewTime(){
 		UILabel tLimitTime = this.transform.FindChild ("tLimitTime").GetComponent<UILabel> ();
-		while (0 < m_fLimitTime) {
+		while (0 <= m_fLimitTime) {
 			m_fLimitTime -= Time.deltaTime;
 			if (0 >= m_fLimitTime) {
 				m_fLimitTime = 0;
