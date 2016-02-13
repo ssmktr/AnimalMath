@@ -28,7 +28,8 @@ public class MainManagerScript : MonoBehaviour
 	void PanelInit ()
 	{
 		m_oCamera = this.transform.FindChild ("Camera").gameObject;
-		MainData = new MainDataScript ();
+//		MainData = new MainDataScript ();
+		GameManager.Instance.InitPlayerData();
 
 		Dictionary<SceneState, string> dicTemp = new Dictionary<SceneState, string> ();
 		dicTemp.Add (SceneState.Main, "PanelMain");

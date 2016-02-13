@@ -16,6 +16,10 @@ public class GameManager : Singleton<GameManager>
 		Debug.Log ("GameManager Awake");
 	}
 
+	public void InitPlayerData()
+	{
+		playerData = new PlayerData();
+	}
 	#region SAVE_DATA
 
 	public void SaveOptionData ()
