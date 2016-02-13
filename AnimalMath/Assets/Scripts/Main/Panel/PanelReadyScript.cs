@@ -98,20 +98,17 @@ public class PanelReadyScript : PanelBaseScript
 	}
 	public void InitLevel()
 	{
+		dicStage["BtnEasy"].GetComponent<UISprite>().spriteName = "BtnGreen";
+		dicStage["BtnNormal"].GetComponent<UISprite>().spriteName = "BtnGreen";
+		dicStage["BtnHard"].GetComponent<UISprite>().spriteName = "BtnGreen";
 		switch (GameManager.Instance.playerData.eStageLevel) {
 		case StageLevel.Easy :
 			dicStage["BtnEasy"].GetComponent<UISprite>().spriteName = "BtnRed";
-			dicStage["BtnNormal"].GetComponent<UISprite>().spriteName = "BtnGreen";
-			dicStage["BtnHard"].GetComponent<UISprite>().spriteName = "BtnGreen";
 			break;
 		case StageLevel.Normal :
-			dicStage["BtnEasy"].GetComponent<UISprite>().spriteName = "BtnGreen";
 			dicStage["BtnNormal"].GetComponent<UISprite>().spriteName = "BtnRed";
-			dicStage["BtnHard"].GetComponent<UISprite>().spriteName = "BtnGreen";
 			break;
 		case StageLevel.Hard :
-			dicStage["BtnEasy"].GetComponent<UISprite>().spriteName = "BtnGreen";
-			dicStage["BtnNormal"].GetComponent<UISprite>().spriteName = "BtnGreen";
 			dicStage["BtnHard"].GetComponent<UISprite>().spriteName = "BtnRed";
 			break;
 		default:
