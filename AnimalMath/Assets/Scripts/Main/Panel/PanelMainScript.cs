@@ -5,6 +5,7 @@ public class PanelMainScript : PanelBaseScript {
 
 	Transform oBG;
 	Transform oEffect;
+	private bool bIsOptionOpen = false;
 
 	// Use this for initialization
 	public override void OnInit ()
@@ -27,11 +28,12 @@ public class PanelMainScript : PanelBaseScript {
 	}
 	void onOption()
 	{
-		StartCoroutine(openOption);
+		StartCoroutine(openOption());
 	}
 
 	IEnumerator openOption()
 	{
+		bIsOptionOpen = !bIsOptionOpen;
 		oBG.transform.position = new Vector3(oBG.transform.position.x - 50,
 			oBG.transform.position.y,
 			oBG.transform.position.z);
