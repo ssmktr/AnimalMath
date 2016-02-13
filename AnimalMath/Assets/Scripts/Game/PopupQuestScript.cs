@@ -40,20 +40,19 @@ public class PopupQuestScript : MonoBehaviour {
 	}
 	void ViewSkill(){
 		GameObject oSkill = this.transform.FindChild ("QuestSkill").gameObject;
-		oSkill.transform.FindChild ("Skill").GetComponent<UISprite> ().spriteName = GameManager.Instance.playerData.eMath.ToString ();
+		oSkill.transform.FindChild ("Skill").GetComponent<UISprite> ().spriteName = GameManager.Instance.playerData.Math.Name.ToString ();
 	}
 	void Update () {
 	}
 	void Exit(){
 		if (QuestSuccess ()) {
-			Debug.Log ("Win");
+			if (null != CallOk) {
+				CallOk ();
+			}
+			Destroy (this.gameObject);
 		} else {
-			Debug.Log ("Lose");
+			m_fLimitTime -= 1;
 		}
-		if (null != CallOk) {
-			CallOk ();
-		}
-		Destroy (this.gameObject);
 	}
 	void Press(GameObject oBtn){
 		if ("BtnOk" == oBtn.name) {
@@ -68,7 +67,8 @@ public class PopupQuestScript : MonoBehaviour {
 			int iNum = int.Parse(oBtn.name.Replace ("BtnNumber", ""));
 			InputResult (iNum);
 		} else if(oBtn.name.Contains("QuestSkill")) {
-			GameManager.Instance.playerData.eMath = MathSkillState.None;
+			UseSkill ();
+			GameManager.Instance.playerData.Math.Name = SkillState.None;
 			ViewSkill ();
 		}
 	}
@@ -144,13 +144,34 @@ public class PopupQuestScript : MonoBehaviour {
 	IEnumerator ViewTime(){
 		UILabel tLimitTime = this.transform.FindChild ("tLimitTime").GetComponent<UILabel> ();
 		while (0 < m_fLimitTime) {
-			m_fLimitTime -= 1;
+			m_fLimitTime -= Time.deltaTime;
 			if (0 >= m_fLimitTime) {
 				m_fLimitTime = 0;
-				Exit ();
+				m_sPlayer.QuestFail ();
+				Destroy (this.gameObject);
+				if (null != CallOk) {
+					CallOk ();
+				}
 			}
 			tLimitTime.text = string.Format ("{0}", (int)m_fLimitTime);
-			yield return new WaitForSeconds (1.0f);
+			yield return null;
+		}
+	}
+	void UseSkill(){
+		if (SkillState.Clock == GameManager.Instance.playerData.Math.Name) {
+			m_fLimitTime += 5;
+		} else if (SkillState.Book == GameManager.Instance.playerData.Math.Name) {
+			Destroy (this.gameObject);
+			if (null != CallOk) {
+				CallOk ();
+			}
+		} else if (SkillState.Key == GameManager.Instance.playerData.Math.Name) {
+			GameObject oPopup = (GameObject)Instantiate (Resources.Load ("Game/Popup/PopupNumber"));
+			oPopup.transform.parent = this.transform;
+			oPopup.transform.localPosition = new Vector3 (-350.0f, 120.0f, 0.0f);
+			oPopup.transform.localScale = Vector3.one;
+			oPopup.transform.FindChild ("Number").GetComponent<UISprite> ().spriteName = "Num" + (m_sPlayer.GetResult % 10);
+			Destroy (oPopup, 3.0f);
 		}
 	}
 }

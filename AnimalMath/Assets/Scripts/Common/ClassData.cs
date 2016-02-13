@@ -10,9 +10,6 @@ public class PlayerData
 	public SkillData Effect = new SkillData();
 	public SkillData Math = new SkillData();
 	public SkillData Passive = new SkillData();
-//	public EffectSkillState eEffect = EffectSkillState.None;
-//	public MathSkillState eMath = MathSkillState.None;
-//	public PassiveSkillState ePassive = PassiveSkillState.None;
 };
 
 public class OptionData
