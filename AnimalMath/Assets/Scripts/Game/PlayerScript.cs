@@ -66,12 +66,10 @@ public class PlayerScript : MonoBehaviour {
 		}
 	}
 	void KeyPress(){
-		if (RuntimePlatform.Android == Application.platform) {
-			if (0 < Input.touchCount) {
-				Jump ();
-			}
+		if (Input.GetKeyDown (KeyCode.UpArrow)) {
+			Jump ();
 		} else {
-			if (Input.GetKeyDown (KeyCode.UpArrow)) {
+			if (0 < Input.touchCount) {
 				Jump ();
 			}
 		}
