@@ -9,6 +9,8 @@ public class GameScript : MonoBehaviour {
 	public GameControlScript m_sGameControl = null;
 	public GameUiScript m_sGameUi = null;
 	private bool m_bPause = true;
+	private int m_iSuccessQuest = 0;
+
 	public bool bPause {
 		get{ return m_bPause; }
 		set{ m_bPause = value; }

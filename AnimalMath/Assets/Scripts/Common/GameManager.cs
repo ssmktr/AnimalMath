@@ -10,6 +10,9 @@ public class GameManager : Singleton<GameManager>
 	public PlayerState ePlayerState = PlayerState.Rhino;
 	public PlayerData playerData = new PlayerData ();
 	public OptionData optionData = new OptionData ();
+	public int EasyScore = 0;
+	public int NormalScore = 0;
+	public int HardScore = 0;
 
 	public void Awake ()
 	{

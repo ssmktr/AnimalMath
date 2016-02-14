@@ -173,4 +173,7 @@ public class PlayerScript : MonoBehaviour {
 		GameManager.Instance.playerData.nLife--;
 		m_sGame.m_sGameUi.ViewGameLife ();
 	}
+	public void SuccessResult(){
+		m_sGame.m_sGameUi.SuccessResult ();
+	}
 }
