@@ -36,6 +36,9 @@ public class PanelReadyScript : PanelBaseScript
 		GameData.SetBtn (this.transform, "BtnHard", "Press", this);
 		GameData.SetBtn (this.transform, "BtnGameStart", "Press", this);
 		GameData.SetBtn (this.transform, "BtnClose", "Press", this);
+		GameObject oBtnGameStart = this.transform.FindChild ("BtnGameStart").gameObject;
+		oBtnGameStart.transform.FindChild ("Label").GetComponent<UILabel> ().text = GameData.LocalizeText ("GameStart");
+
 		//for Skill
 		GameData.SetBtn (this.transform, "SlotEffect", "Press", this);
 		GameData.SetBtn (this.transform, "SlotMath", "Press", this);

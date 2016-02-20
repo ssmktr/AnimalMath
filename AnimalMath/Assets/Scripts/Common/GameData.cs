@@ -60,4 +60,12 @@ public class GameData : MonoBehaviour {
 		}
 		return code;
 	}
+
+	public static void SetLanguage(string strLanguage){
+		SmartLocalization.LanguageManager.Instance.ChangeLanguage (strLanguage);
+	}
+	public static string LocalizeText(string strKey){
+		SetLanguage (GameManager.Instance.Language);
+		return SmartLocalization.LanguageManager.Instance.GetTextValue (strKey);
+	}
 }

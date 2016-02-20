@@ -13,6 +13,7 @@ public class GameManager : Singleton<GameManager>
 	public int EasyScore = 0;
 	public int NormalScore = 0;
 	public int HardScore = 0;
+	public string Language = "ko";
 
 	public void Awake ()
 	{

@@ -14,6 +14,8 @@ public class PanelMainScript : PanelBaseScript {
 		oEffect = this.transform.FindChild("BtnOption").FindChild("Effect") as Transform;
 		GameData.SetBtn(this.transform, "BtnGameReady","Press", this);
 		GameData.SetBtn(this.transform, "BtnOption", "Press", this);
+		GameObject oBtnGameReady = this.transform.FindChild ("BtnGameReady").gameObject;
+		oBtnGameReady.transform.FindChild ("Label").GetComponent<UILabel> ().text = GameData.LocalizeText ("GameReady");
 	}
 	void Start () {
 		
