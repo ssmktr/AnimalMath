@@ -4,18 +4,20 @@ using System.Text;
 using System.Collections;
 using LitJson;
 
+
+
 public class GameManager : Singleton<GameManager>
 {	
 	public bool bGameLogin = false;
 	public PlayerState ePlayerState = PlayerState.Rhino;
 	public PlayerData playerData = new PlayerData ();
 	public OptionData optionData = new OptionData ();
-	public int EasyScore = 0;
-	public int NormalScore = 0;
-	public int HardScore = 0;
+	public int Gold = 9999;
+	public Score score = new Score();
 
 	public void Awake ()
 	{
+		
 		Debug.Log ("GameManager Awake");
 	}
 
@@ -24,7 +26,35 @@ public class GameManager : Singleton<GameManager>
 		playerData = new PlayerData();
 	}
 	#region SAVE_DATA
-
+	public void SaveGameDataToLocal()
+	{
+		StringBuilder sb = new StringBuilder();
+		JsonWriter save = new JsonWriter(sb);
+		save.WriteObjectStart();
+		save.WritePropertyName("Gold");
+		save.Write(Gold);
+		save.WritePropertyName("EasyScoreFirst");
+		save.Write(score.EasyScoreFirst);
+		save.WritePropertyName("EasyScoreSecond");
+		save.Write(score.EasyScoreSecond);
+		save.WritePropertyName("EasyScoreThird");
+		save.Write(score.EasyScoreThird);
+		save.WritePropertyName("NormalScoreFirst");
+		save.Write(score.NormalScoreFirst);
+		save.WritePropertyName("NormalScoreSecond");
+		save.Write(score.NormalScoreSecond);
+		save.WritePropertyName("NormalScoreThird");
+		save.Write(score.NormalScoreThird);
+		save.WritePropertyName("HardScoreFirst");
+		save.Write(score.HardScoreFirst);
+		save.WritePropertyName("HardScoreSecond");
+		save.Write(score.HardScoreSecond);
+		save.WritePropertyName("HardScoreThird");
+		save.Write(score.HardScoreThird);
+		save.WriteObjectEnd();
+		Debug.Log(sb.ToString());
+		PlayerPrefs.SetString("GAMEDATA", sb.ToString());
+	}
 	public void SaveOptionData ()
 	{
 		StringBuilder sb = new StringBuilder ();
@@ -34,8 +64,6 @@ public class GameManager : Singleton<GameManager>
 		save.Write (optionData.SoundBG);
 		save.WritePropertyName ("SoundEffect");
 		save.Write (optionData.SoundEffect);
-		save.WritePropertyName("Gold");
-		save.Write(optionData.Gold);
 		save.WritePropertyName("Language");
 		save.Write(optionData.Language);
 		save.WriteObjectEnd ();	

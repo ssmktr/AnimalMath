@@ -17,12 +17,14 @@ public class TItleScript : MonoBehaviour {
 		}
 	}
 	void LoadData(){
-//		GameManager.Instance.SaveOptionData();
+		GameManager.Instance.SaveOptionData();
+		GameManager.Instance.SaveGameDataToLocal();
 //		if (SystemLanguage.Korean == Application.systemLanguage) {
 //			GameManager.Instance.optionData.Language = "ko";
 //		} else {
 //			GameManager.Instance.optionData.Language = "en";
 //		}
+		DataManager.Instance.LoadGameData();
 		DataManager.Instance.LoadData();
 	}
 }

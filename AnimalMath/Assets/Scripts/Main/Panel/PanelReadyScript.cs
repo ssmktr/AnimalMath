@@ -112,7 +112,7 @@ public class PanelReadyScript : PanelBaseScript
 	#region INIT
 	void InitGold()
 	{
-		lbGold.text = "Gold : " + GameManager.Instance.optionData.Gold;
+		lbGold.text = "Gold : " + GameManager.Instance.Gold;
 	}
 	void InitButtons()
 	{
@@ -235,7 +235,7 @@ public class PanelReadyScript : PanelBaseScript
 	#region GOLD
 	void SetGold()
 	{
-		nTotalPrice = GameManager.Instance.optionData.Gold; 
+		nTotalPrice = GameManager.Instance.Gold; 
 		int tempPrice = nTotalPrice;
 		tempPrice = nTotalPrice - (nEffectPrice + nMathPrice + nPassivePrice);
 		lbGold.text = "Gold : " + tempPrice.ToString();
@@ -243,8 +243,9 @@ public class PanelReadyScript : PanelBaseScript
 	}
 	void SaveGold()
 	{
-		GameManager.Instance.optionData.Gold = nTotalPrice - (nEffectPrice + nMathPrice + nPassivePrice);
-		GameManager.Instance.SaveOptionData();
+		GameManager.Instance.Gold = nTotalPrice - (nEffectPrice + nMathPrice + nPassivePrice);
+		Debug.Log("Gold : " + GameManager.Instance.Gold);
+		GameManager.Instance.SaveGameDataToLocal();
 	}
 	#endregion
 

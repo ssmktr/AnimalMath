@@ -16,6 +16,26 @@ public class DataManager : Singleton<DataManager> {
 	{
 		LoadSkillData();
 		LoadOptionData();
+
+	}
+	public void LoadGameData(){
+		string strGameData = PlayerPrefs.GetString("GAMEDATA");
+		Debug.Log("LoadGameData : " + strGameData);
+		if ("" != strGameData) {
+			JsonData GetData = JsonMapper.ToObject(strGameData);
+			GameManager.Instance.Gold = int.Parse(GetData["Gold"].ToString());
+			GameManager.Instance.score.EasyScoreFirst = int.Parse(GetData["EasyScoreFirst"].ToString());
+			GameManager.Instance.score.EasyScoreSecond = int.Parse(GetData["EasyScoreSecond"].ToString());
+			GameManager.Instance.score.EasyScoreThird = int.Parse(GetData["EasyScoreThird"].ToString());
+
+			GameManager.Instance.score.NormalScoreFirst = int.Parse(GetData["NormalScoreFirst"].ToString());
+			GameManager.Instance.score.NormalScoreSecond = int.Parse(GetData["NormalScoreSecond"].ToString());
+			GameManager.Instance.score.NormalScoreThird = int.Parse(GetData["NormalScoreThird"].ToString());
+
+			GameManager.Instance.score.HardScoreFirst = int.Parse(GetData["HardScoreFirst"].ToString());
+			GameManager.Instance.score.HardScoreSecond = int.Parse(GetData["HardScoreSecond"].ToString());
+			GameManager.Instance.score.HardScoreThird = int.Parse(GetData["HardScoreThird"].ToString());
+		}
 	}
 	public void LoadOptionData(){
 		string strOption = PlayerPrefs.GetString("OPTION");
@@ -24,7 +44,6 @@ public class DataManager : Singleton<DataManager> {
 			JsonData GetData = JsonMapper.ToObject (strOption);
 			GameManager.Instance.optionData.SoundBG = bool.Parse(GetData["SoundBG"].ToString());
 			GameManager.Instance.optionData.SoundEffect = bool.Parse(GetData["SoundEffect"].ToString());
-			GameManager.Instance.optionData.Gold = int.Parse(GetData["Gold"].ToString());
 			GameManager.Instance.optionData.Language = GetData["Language"].ToString();
 		}
 	}

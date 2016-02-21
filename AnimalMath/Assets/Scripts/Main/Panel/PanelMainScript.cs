@@ -64,7 +64,8 @@ public class PanelMainScript : PanelBaseScript
 
 	void InitMainUI ()
 	{
-		gold.text = "Gold : " + GameManager.Instance.optionData.Gold.ToString();
+//		GameManager.Instance.Gold = GameData
+		gold.text = "Gold : " + GameManager.Instance.Gold.ToString();
 		InitOptionIcon();
 	}
 	void InitOptionIcon()
