@@ -10,8 +10,8 @@ public class PanelMainScript : PanelBaseScript {
 	// Use this for initialization
 	public override void OnInit ()
 	{
-		oBG = this.transform.FindChild("BtnOption").FindChild("BG") as Transform;
-		oEffect = this.transform.FindChild("BtnOption").FindChild("Effect") as Transform;
+		oBG = this.transform.FindChild("BG");
+		oEffect = this.transform.FindChild("Effect");
 		GameData.SetBtn(this.transform, "BtnGameReady","Press", this);
 		GameData.SetBtn(this.transform, "BtnOption", "Press", this);
 		GameObject oBtnGameReady = this.transform.FindChild ("BtnGameReady").gameObject;
@@ -30,27 +30,29 @@ public class PanelMainScript : PanelBaseScript {
 	}
 	void onOption()
 	{
-		TweenPosition tp = new TweenPosition();
-		tp.from = oBG.transform.position;
-		tp.to = new Vector3(oBG.transform.position.x -50,oBG.transform.position.y,oBG.transform.position.z);
-		tp.style = UITweener.Style.Once;        // there's also PingPong (back and forth) and Loop (when reaches end, goes back to start)
-		tp.method = UITweener.Method.EaseIn;    // there's also BounceIn, BounceOut, EaseOut, etc
-//		tp.onFinished += myHandler;
-		tp.duration = 0.5f;
-//		StartCoroutine(openOption());
+		if(!bIsOptionOpen)
+		{
+			moveBtn(oBG, -110);
+			moveBtn(oEffect, -220);
+		} else {
+			moveBtn(oBG, 110);
+			moveBtn(oEffect, 220);
+		}
+			
+		bIsOptionOpen = !bIsOptionOpen;
 	}
 
-	IEnumerator openOption()
+	void moveBtn(Transform obj , float move)
 	{
-		bIsOptionOpen = !bIsOptionOpen;
-		oBG.transform.Translate(new Vector3(oBG.transform.position.x - 50,
-			oBG.transform.position.y,
-			oBG.transform.position.z));
-		oEffect.transform.Translate(new Vector3(oEffect.transform.position.x - 25,
-			oEffect.transform.position.y,
-			oEffect.transform.position.z));
-		Debug.Log("coroution IN");
-		yield return new WaitForSeconds(1.0f);
+		TweenPosition tp = obj.GetComponent<TweenPosition>();
+		tp.from = oBG.transform.position;
+		tp.to = new Vector3(oBG.transform.position.x + move,oBG.transform.position.y,oBG.transform.position.z);
+		tp.style = UITweener.Style.Once;        // there's also PingPong (back and forth) and Loop (when reaches end, goes back to start)
+		tp.method = UITweener.Method.EaseIn;    // there's also BounceIn, BounceOut, EaseOut, etc
+		//		tp.onFinished += myHandler;
+		tp.duration = 1.0f;
+		tp.Play();
+
 	}
 
 	// Update is called once per frame
