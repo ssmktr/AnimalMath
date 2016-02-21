@@ -11,6 +11,11 @@ public class PanelReadyScript : PanelBaseScript
 	private UISprite spriteEffect;
 	private UISprite spriteMath;
 	private UISprite spritePassive;
+	private UILabel lbGold;
+	private int nTotalPrice = 0;
+	private int nEffectPrice = 0;
+	private int nMathPrice =0;
+	private int nPassivePrice =0;
 	private Dictionary<string, Transform> dicStage = new Dictionary<string, Transform>();
 	private Dictionary<string, Transform> dicSlot = new Dictionary<string, Transform>();
 
@@ -25,6 +30,7 @@ public class PanelReadyScript : PanelBaseScript
 		spriteEffect = this.transform.FindChild("SlotEffect").transform.FindChild("Sprite").GetComponent<UISprite>();
 		spriteMath = this.transform.FindChild("SlotMath").transform.FindChild("Sprite").GetComponent<UISprite>();
 		spritePassive = this.transform.FindChild("SlotPassive").transform.FindChild("Sprite").GetComponent<UISprite>();
+		lbGold = this.transform.FindChild("Gold").GetComponentInChildren<UILabel>();
 
 		PanelItemSlotScript.OnEffectSelected += OnEffectSelected;
 		PanelItemSlotScript.OnMathSelected += OnMathSelected;
@@ -44,7 +50,7 @@ public class PanelReadyScript : PanelBaseScript
 		GameData.SetBtn (this.transform, "SlotMath", "Press", this);
 		GameData.SetBtn (this.transform, "SlotPassive", "Press", this);
 
-
+		InitGold();
 		if(dicStage.Count > 0)
 		{
 			InitLevel();
@@ -63,7 +69,13 @@ public class PanelReadyScript : PanelBaseScript
 		InitLevel();
 		InitButtons();
 	}
-		
+	void Start ()
+	{
+	}
+
+	void Update ()
+	{
+	}
 	public override void OnPress (GameObject oBtn)
 	{
 		if (oBtn.name == "BtnEasy") {
@@ -78,6 +90,7 @@ public class PanelReadyScript : PanelBaseScript
 		} else if (oBtn.name == "BtnGameStart") {
 //			Debug.Log ("Start");
 			CheckData();
+			SaveGold();
 			SceneManager.LoadScene("Game");
 		} else if (oBtn.name == "BtnClose"){
 			m_sManager.SetScene(SceneState.Main);
@@ -92,7 +105,15 @@ public class PanelReadyScript : PanelBaseScript
 			RemovePassiveItem();
 		}
 	}
+	public override void OnExit ()
+	{
 
+	}
+	#region INIT
+	void InitGold()
+	{
+		lbGold.text = "Gold : " + GameManager.Instance.optionData.Gold;
+	}
 	void InitButtons()
 	{
 		RemoveEffectItem();
@@ -119,12 +140,12 @@ public class PanelReadyScript : PanelBaseScript
 		}
 
 	}
+	#endregion
+
 	void ResetReadyData()
 	{
 		GameManager.Instance.playerData = new PlayerData();
 	}
-
-
 	void RemoveEffectItem()
 	{
 		Debug.Log("EffectSetNone");
@@ -132,6 +153,8 @@ public class PanelReadyScript : PanelBaseScript
 		GameManager.Instance.playerData.Effect = new SkillData();
 //		this.transform.FindChild("SlotEffect").transform.FindChild("Sprite").gameObject.SetActive(false);
 		spriteEffect.alpha = 0.0f;
+		nEffectPrice = 0;
+		SetGold();
 	}
 	void RemoveMathItem()
 	{
@@ -139,6 +162,8 @@ public class PanelReadyScript : PanelBaseScript
 		itemSlotScript.ResetMathButton();
 		GameManager.Instance.playerData.Math = new SkillData();
 		spriteMath.alpha = 0.0f;
+		nMathPrice = 0;
+		SetGold();
 //		this.transform.FindChild("SlotMath").transform.FindChild("Sprite").gameObject.SetActive(false);
 	}
 	void RemovePassiveItem()
@@ -147,12 +172,13 @@ public class PanelReadyScript : PanelBaseScript
 		itemSlotScript.ResetPassiveButton();
 		GameManager.Instance.playerData.Passive = new SkillData();
 		spritePassive.alpha = 0.0f;
+		nPassivePrice = 0;
+		SetGold();
 //		this.transform.FindChild("SlotPassive").transform.FindChild("Sprite").gameObject.SetActive(false);
 	}
 	void CheckData()
 	{
 		PlayerData data = GameManager.Instance.playerData;
-
 		Debug.Log(data.Effect.Name.ToString() + "/"+ data.Math.Name.ToString() + "/"+ data.Passive.Name.ToString() + "/"+ 
 			data.ePlayerType.ToString() + "/"+ data.eStageLevel.ToString());
 	}
@@ -178,16 +204,22 @@ public class PanelReadyScript : PanelBaseScript
 	{
 		SetSlot(state, spriteEffect);
 		GameManager.Instance.playerData.Effect = DataManager.Instance.dicSkillData[state];
+		nEffectPrice = GameManager.Instance.playerData.Effect.Price;
+		SetGold();
 	}
 	void OnMathSelected(SkillState state)
 	{
 		SetSlot(state, spriteMath);
 		GameManager.Instance.playerData.Math = DataManager.Instance.dicSkillData[state];
+		nMathPrice = GameManager.Instance.playerData.Math.Price;
+		SetGold();
 	}
 	void OnPassiveSelected(SkillState state)
 	{
 		SetSlot(state, spritePassive);
 		GameManager.Instance.playerData.Passive = DataManager.Instance.dicSkillData[state];
+		nPassivePrice = GameManager.Instance.playerData.Passive.Price;
+		SetGold();
 	}
 	void SetSlot(SkillState state, UISprite sprite)
 	{
@@ -199,18 +231,22 @@ public class PanelReadyScript : PanelBaseScript
 		sprite.width = 50;
 		sprite.height = 50;
 	}
-	public override void OnExit ()
+
+	#region GOLD
+	void SetGold()
 	{
-		
+		nTotalPrice = GameManager.Instance.optionData.Gold; 
+		int tempPrice = nTotalPrice;
+		tempPrice = nTotalPrice - (nEffectPrice + nMathPrice + nPassivePrice);
+		lbGold.text = "Gold : " + tempPrice.ToString();
+
 	}
-
-
-
-	void Start ()
+	void SaveGold()
 	{
+		GameManager.Instance.optionData.Gold = nTotalPrice - (nEffectPrice + nMathPrice + nPassivePrice);
+		GameManager.Instance.SaveOptionData();
 	}
+	#endregion
 
-	void Update ()
-	{
-	}
+
 }

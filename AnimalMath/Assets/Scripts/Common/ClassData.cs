@@ -16,6 +16,8 @@ public class OptionData
 {
 	public bool SoundBG = true;
 	public bool SoundEffect = true;
+	public int Gold = 99999;
+	public string Language = @"ko";
 }
 
 public class EnemyData

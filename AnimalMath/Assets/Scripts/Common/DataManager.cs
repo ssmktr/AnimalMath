@@ -15,6 +15,7 @@ public class DataManager : Singleton<DataManager> {
 	public void LoadData()
 	{
 		LoadSkillData();
+		LoadOptionData();
 	}
 	public void LoadOptionData(){
 		string strOption = PlayerPrefs.GetString("OPTION");
@@ -23,6 +24,8 @@ public class DataManager : Singleton<DataManager> {
 			JsonData GetData = JsonMapper.ToObject (strOption);
 			GameManager.Instance.optionData.SoundBG = bool.Parse(GetData["SoundBG"].ToString());
 			GameManager.Instance.optionData.SoundEffect = bool.Parse(GetData["SoundEffect"].ToString());
+			GameManager.Instance.optionData.Gold = int.Parse(GetData["Gold"].ToString());
+			GameManager.Instance.optionData.Language = GetData["Language"].ToString();
 		}
 	}
 	public void LoadSkillData(){

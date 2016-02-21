@@ -13,7 +13,6 @@ public class GameManager : Singleton<GameManager>
 	public int EasyScore = 0;
 	public int NormalScore = 0;
 	public int HardScore = 0;
-	public string Language = "ko";
 
 	public void Awake ()
 	{
@@ -35,6 +34,10 @@ public class GameManager : Singleton<GameManager>
 		save.Write (optionData.SoundBG);
 		save.WritePropertyName ("SoundEffect");
 		save.Write (optionData.SoundEffect);
+		save.WritePropertyName("Gold");
+		save.Write(optionData.Gold);
+		save.WritePropertyName("Language");
+		save.Write(optionData.Language);
 		save.WriteObjectEnd ();	
 //		Console.WriteLine (sb.ToString ());
 		Debug.Log (sb.ToString ());

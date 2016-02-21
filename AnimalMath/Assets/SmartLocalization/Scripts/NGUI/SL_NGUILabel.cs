@@ -5,7 +5,7 @@
 
 //#define SMARTLOC_NGUI //<--- UNCOMMENT THIS FOR NGUI CLASSES
 
-#if SMARTLOC_NGUI
+//#if SMARTLOC_NGUI
 using UnityEngine;
 using System.Collections;
 using SmartLocalization;
@@ -18,6 +18,7 @@ public class SL_NGUILabel : MonoBehaviour
 	void Awake()
 	{
 		uiLabel = GetComponent<UILabel>();
+		localizedKey = uiLabel.transform.name;
 	}
 	
 	void Start () 
@@ -42,4 +43,4 @@ public class SL_NGUILabel : MonoBehaviour
 		uiLabel.text = LanguageManager.Instance.GetTextValue(localizedKey);
 	}	
 }
-#endif
+//#endif

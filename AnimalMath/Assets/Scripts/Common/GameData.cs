@@ -65,7 +65,7 @@ public class GameData : MonoBehaviour {
 		SmartLocalization.LanguageManager.Instance.ChangeLanguage (strLanguage);
 	}
 	public static string LocalizeText(string strKey){
-		SetLanguage (GameManager.Instance.Language);
+		SetLanguage (GameManager.Instance.optionData.Language);
 		return SmartLocalization.LanguageManager.Instance.GetTextValue (strKey);
 	}
 }

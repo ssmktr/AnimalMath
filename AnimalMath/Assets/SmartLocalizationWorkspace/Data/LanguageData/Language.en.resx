@@ -116,10 +116,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+	<data name="Easy" xml:space="preserve">
+		<value>Easy</value>
+	</data>
 	<data name="GameReady" xml:space="preserve">
 		<value>Ready</value>
 	</data>
 	<data name="GameStart" xml:space="preserve">
 		<value>Start</value>
+	</data>
+	<data name="Hard" xml:space="preserve">
+		<value>Hard</value>
+	</data>
+	<data name="Language" xml:space="preserve">
+		<value>English</value>
+	</data>
+	<data name="Normal" xml:space="preserve">
+		<value>Normal</value>
 	</data>
 </root>
