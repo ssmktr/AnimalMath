@@ -5,10 +5,12 @@ public class PanelBaseScript : MonoBehaviour {
 
 	protected MainManagerScript m_sManager = null;
 	protected MainDataScript MainData = null;
+	protected AdsScript AdsData = null;
 
 	public void SetManager(MainManagerScript manager, MainDataScript data){
 		m_sManager = manager;
 		MainData = data;
+		AdsData = m_sManager.AdsData;
 	}
 
 	public virtual void init(){

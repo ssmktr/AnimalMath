@@ -26,7 +26,7 @@ public enum PopupState
 
 public enum SkillState
 {
-	None,
+	None = 0,
 	Accuracy,
 	Bomb,
 	RoseOfWinds,
