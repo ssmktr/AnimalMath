@@ -5,11 +5,11 @@ using System.Collections.Generic;
 
 public class MainManagerScript : MonoBehaviour
 {
-
 	private Dictionary<SceneState, PanelBaseScript> DicScene = new Dictionary<SceneState, PanelBaseScript> ();
 	private GameObject m_oCamera;
 
 	public MainDataScript MainData;
+	public AdsScript AdsData;
 
 	void Awake()
 	{
@@ -32,7 +32,8 @@ public class MainManagerScript : MonoBehaviour
 	void PanelInit ()
 	{
 		m_oCamera = this.transform.FindChild ("Camera").gameObject;
-//		MainData = new MainDataScript ();
+		MainData = new MainDataScript ();
+		AdsData = new AdsScript ();
 		GameManager.Instance.InitPlayerData();
 
 		Dictionary<SceneState, string> dicTemp = new Dictionary<SceneState, string> ();

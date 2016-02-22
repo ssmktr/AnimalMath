@@ -108,6 +108,23 @@ public class PanelReadyScript : PanelBaseScript
 		} else if (oBtn.name == "SlotPassive") {
 //			Debug.Log("Passive");
 			RemovePassiveItem ();
+			LevelSelected(oBtn.name);
+		} else if (oBtn.name == "BtnNormal") {
+			LevelSelected(oBtn.name);
+		} else if (oBtn.name == "BtnHard") {
+			LevelSelected(oBtn.name);
+		} else if (oBtn.name == "BtnGameStart") {
+			CheckData();
+			SaveGold();
+			AdsData.PlayAds ();
+		} else if (oBtn.name == "BtnClose"){
+			m_sManager.SetScene(SceneState.Main);
+		} else if (oBtn.name == "SlotEffect"){
+			RemoveEffectItem();
+		} else if (oBtn.name == "SlotMath"){
+			RemoveMathItem();
+		} else if (oBtn.name == "SlotPassive"){
+			RemovePassiveItem();
 		}
 	}
 

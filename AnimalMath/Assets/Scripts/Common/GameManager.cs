@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text;
 using System.Collections;
+using UnityEngine.SceneManagement;
 using LitJson;
 
 
@@ -25,6 +26,10 @@ public class GameManager : Singleton<GameManager>
 	{
 		playerData = new PlayerData();
 	}
+	public void NextScene(string strScene){
+		SceneManager.LoadScene (strScene);
+	}
+
 	#region SAVE_DATA
 	public void SaveGameDataToLocal()
 	{
