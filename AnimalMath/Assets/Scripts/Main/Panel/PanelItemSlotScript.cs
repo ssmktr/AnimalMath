@@ -16,26 +16,35 @@ public class PanelItemSlotScript : PanelBaseScript
 	void Awake ()
 	{
 //		Debug.Log ("Init");
-		OnInit ();
+		Init ();
 	}
 
-	public override void OnInit ()
+	void Start ()
+	{
+		
+	}
+	// Update is called once per frame
+	void Update ()
+	{
+
+	}
+
+	void Init ()
 	{
 		Debug.Log ("PanelItemSlotScript : OnInit");
 
 		for (SkillState i = SkillState.Accuracy; i < SkillState.MAX; i++) {
 			GameData.SetBtn (this.transform, i.ToString (), "Press", this);
-			dicSkill.Add (i, this.transform.FindChild (i.ToString()));
+			dicSkill.Add (i, this.transform.FindChild (i.ToString ()));
 		}
 		Transform item;
 
 		for (SkillState i = SkillState.Accuracy; i < SkillState.MAX; i++) {
-			item = dicSkill[i];
-			item.transform.FindChild("Icon").GetComponent<UISprite>().spriteName = i.ToString();
+			item = dicSkill [i];
+			item.transform.FindChild ("Icon").GetComponent<UISprite> ().spriteName = i.ToString ();
 //			Debug.Log("data price" + DataManager.Instance.dicSkillData[i].Price.ToString());
-			if(DataManager.Instance.dicSkillData[i].Price.ToString() != "")
-			{
-				item.transform.FindChild("Sprite").GetComponentInChildren<UILabel>().text = DataManager.Instance.dicSkillData[i].Price.ToString();	
+			if (DataManager.Instance.dicSkillData [i].Price.ToString () != "") {
+				item.transform.FindChild ("Sprite").GetComponentInChildren<UILabel> ().text = DataManager.Instance.dicSkillData [i].Price.ToString ();	
 			}
 		}
 	}
@@ -75,7 +84,7 @@ public class PanelItemSlotScript : PanelBaseScript
 
 	void SetEffectBtton (SkillState state)
 	{
-		ResetEffectButton();
+		ResetEffectButton ();
 		dicSkill [state].GetComponent<UISprite> ().spriteName = "BtnRed";
 
 		OnEffectSelected (state);
@@ -83,7 +92,7 @@ public class PanelItemSlotScript : PanelBaseScript
 
 	void SetMathBtton (SkillState state)
 	{
-		ResetMathButton();
+		ResetMathButton ();
 		dicSkill [state].GetComponent<UISprite> ().spriteName = "BtnRed";
 
 		OnMathSelected (state);
@@ -91,7 +100,7 @@ public class PanelItemSlotScript : PanelBaseScript
 
 	void SetPassiveButton (SkillState state)
 	{
-		ResetPassiveButton();
+		ResetPassiveButton ();
 		dicSkill [state].GetComponent<UISprite> ().spriteName = "BtnRed";
 
 		OnPassiveSelected (state);
@@ -118,17 +127,14 @@ public class PanelItemSlotScript : PanelBaseScript
 		dicSkill [SkillState.MedalRibbon].GetComponent<UISprite> ().spriteName = "CheckBoxRect";
 	}
 
-
-	void Start ()
+	public void ResetButton (SkillState state)
 	{
-		
-
-
+		UISprite sprite = dicSkill [state].transform.GetComponent<UISprite> () as UISprite;
+		if (sprite == null) {
+			Debug.LogError ("sprite is null");
+			return;
+		}
+		sprite.spriteName = "CheckBoxRect";
 	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-	
-	}
+
 }
