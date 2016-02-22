@@ -96,7 +96,8 @@ public class PanelReadyScript : PanelBaseScript
 //			Debug.Log ("Start");
 			CheckData ();
 			SaveGold ();
-			SceneManager.LoadScene ("Game");
+			AdsData.PlayAds ();
+//			SceneManager.LoadScene ("Game");
 		} else if (oBtn.name == "BtnClose") {
 			m_sManager.SetScene (SceneState.Main);
 		} else if (oBtn.name == "SlotEffect") {
@@ -108,23 +109,6 @@ public class PanelReadyScript : PanelBaseScript
 		} else if (oBtn.name == "SlotPassive") {
 //			Debug.Log("Passive");
 			RemovePassiveItem ();
-			LevelSelected(oBtn.name);
-		} else if (oBtn.name == "BtnNormal") {
-			LevelSelected(oBtn.name);
-		} else if (oBtn.name == "BtnHard") {
-			LevelSelected(oBtn.name);
-		} else if (oBtn.name == "BtnGameStart") {
-			CheckData();
-			SaveGold();
-			AdsData.PlayAds ();
-		} else if (oBtn.name == "BtnClose"){
-			m_sManager.SetScene(SceneState.Main);
-		} else if (oBtn.name == "SlotEffect"){
-			RemoveEffectItem();
-		} else if (oBtn.name == "SlotMath"){
-			RemoveMathItem();
-		} else if (oBtn.name == "SlotPassive"){
-			RemovePassiveItem();
 		}
 	}
 
@@ -242,7 +226,7 @@ public class PanelReadyScript : PanelBaseScript
 			nEffectPrice = 0;
 			Debug.Log("TempPrice : " + nTempPrice);
 			SetGold ();
-			itemSlotScript.ResetButton(state);
+//			itemSlotScript.ResetButton(state);
 			return;
 		}
 		SetSlot (state, spriteEffect);
@@ -258,7 +242,7 @@ public class PanelReadyScript : PanelBaseScript
 			nMathPrice = 0;
 			Debug.Log("TempPrice : " + nTempPrice);
 			SetGold ();
-			itemSlotScript.ResetButton(state);
+//			itemSlotScript.ResetButton(state);
 			return;
 		}
 		SetSlot (state, spriteMath);
@@ -276,7 +260,7 @@ public class PanelReadyScript : PanelBaseScript
 			Debug.Log("TempPrice : " + nTempPrice);
 			SetGold();
 //			RemovePassiveItem();
-			itemSlotScript.ResetButton(state);
+//			itemSlotScript.ResetButton(state);
 			return;
 		}
 		SetSlot (state, spritePassive);
