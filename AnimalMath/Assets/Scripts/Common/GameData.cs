@@ -9,6 +9,9 @@ public class GameData : MonoBehaviour {
 //	public const int MAX_GOLD = 99999;
 //	public const int MAX_DP = 99999;
 //	public const int MAX_HEARTTIME = 60 * 5;
+	public const string MainScene = "Main";
+	public const string TitleScene = "Title";
+	public const string GameScene = "Game";
 
 	public static Transform FindChild(Transform Root, string TargetName) {
 		Transform[] arrTran = Root.GetComponentsInChildren<Transform>();

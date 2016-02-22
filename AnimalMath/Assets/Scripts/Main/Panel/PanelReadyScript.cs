@@ -79,29 +79,22 @@ public class PanelReadyScript : PanelBaseScript
 	public override void OnPress (GameObject oBtn)
 	{
 		if (oBtn.name == "BtnEasy") {
-//			Debug.Log ("easy");
 			LevelSelected(oBtn.name);
 		} else if (oBtn.name == "BtnNormal") {
-//			Debug.Log ("Normal");
 			LevelSelected(oBtn.name);
 		} else if (oBtn.name == "BtnHard") {
-//			Debug.Log ("Hard");
 			LevelSelected(oBtn.name);
 		} else if (oBtn.name == "BtnGameStart") {
-//			Debug.Log ("Start");
 			CheckData();
 			SaveGold();
-			SceneManager.LoadScene("Game");
+			AdsData.PlayAds ();
 		} else if (oBtn.name == "BtnClose"){
 			m_sManager.SetScene(SceneState.Main);
 		} else if (oBtn.name == "SlotEffect"){
-//			Debug.Log("effect");
 			RemoveEffectItem();
 		} else if (oBtn.name == "SlotMath"){
-//			Debug.Log("math");
 			RemoveMathItem();
 		} else if (oBtn.name == "SlotPassive"){
-//			Debug.Log("Passive");
 			RemovePassiveItem();
 		}
 	}
