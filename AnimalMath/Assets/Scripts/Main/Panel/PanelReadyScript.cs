@@ -1,8 +1,5 @@
 ﻿using UnityEngine;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using LitJson;
 
 public class PanelReadyScript : PanelBaseScript
@@ -15,6 +12,7 @@ public class PanelReadyScript : PanelBaseScript
 
 	public override void OnInit () {
 		GameData.SetBtn (this.transform, "BtnBack", "Press", this);
+		GameData.SetBtn (this.transform, "BtnGameStart", "Press", this);
 		GameData.SetBtn (this.transform, "BtnEasy", "Press", this);
 		GameData.SetBtn (this.transform, "BtnNormal", "Press", this);
 		GameData.SetBtn (this.transform, "BtnHard", "Press", this);
@@ -88,6 +86,12 @@ public class PanelReadyScript : PanelBaseScript
 		oViewMath.transform.FindChild ("Sprite").GetComponent<UISprite> ().spriteName = m_eMath.ToString ();
 		oViewPassive.transform.FindChild ("Sprite").GetComponent<UISprite> ().spriteName = m_ePassive.ToString ();
 	}
+	void InGameData(){
+		GameManager.Instance.playerData.eStageLevel = m_eStageLevel;
+		GameManager.Instance.playerData.Effect.Name = m_eEffect;
+		GameManager.Instance.playerData.Math.Name = m_eMath;
+		GameManager.Instance.playerData.Passive.Name = m_ePassive;
+	}
 	public override void OnPress (GameObject oBtn)
 	{
 		if (oBtn.name == "BtnEasy") {
@@ -97,6 +101,7 @@ public class PanelReadyScript : PanelBaseScript
 		} else if (oBtn.name == "BtnHard") {
 			m_eStageLevel = StageLevel.Hard;
 		} else if (oBtn.name == "BtnGameStart") {
+			InGameData ();
 			AdsData.PlayAds ();
 		} else if (oBtn.name == "BtnBack") {
 			m_sManager.SetScene (SceneState.Main);
