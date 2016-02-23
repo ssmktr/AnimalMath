@@ -26,22 +26,25 @@ public enum PopupState
 
 public enum SkillState
 {
-	None = 0,
-	Accuracy,
+	Accuracy = 0,
 	Bomb,
 	RoseOfWinds,
+
 	Clock,
-	Key,
 	Book,
-	MedalRibbon,
-	Chest,
+	Key,
+
 	Life,
+	Chest,
+	MedalRibbon,
+
+	None,
 	MAX
 };
 
 public enum SkillType
 {
-None,
+	None,
 	Effect,
 	Math,
 	Passive
