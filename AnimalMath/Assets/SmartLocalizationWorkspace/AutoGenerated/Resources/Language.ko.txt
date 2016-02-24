@@ -125,6 +125,9 @@
 	<data name="GameStart" xml:space="preserve">
 		<value>게임 시작</value>
 	</data>
+	<data name="goldTextBox" xml:space="preserve">
+		<value>골드가 부족합니다.</value>
+	</data>
 	<data name="Hard" xml:space="preserve">
 		<value>어려움</value>
 	</data>
@@ -133,5 +136,8 @@
 	</data>
 	<data name="Normal" xml:space="preserve">
 		<value>보통</value>
+	</data>
+	<data name="ok" xml:space="preserve">
+		<value>확 인</value>
 	</data>
 </root>

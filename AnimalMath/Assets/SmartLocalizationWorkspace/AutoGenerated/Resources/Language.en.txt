@@ -125,6 +125,9 @@
 	<data name="GameStart" xml:space="preserve">
 		<value>Start</value>
 	</data>
+	<data name="goldTextBox" xml:space="preserve">
+		<value>Not enough Money.</value>
+	</data>
 	<data name="Hard" xml:space="preserve">
 		<value>Hard</value>
 	</data>
@@ -133,5 +136,8 @@
 	</data>
 	<data name="Normal" xml:space="preserve">
 		<value>Normal</value>
+	</data>
+	<data name="ok" xml:space="preserve">
+		<value>OK</value>
 	</data>
 </root>
