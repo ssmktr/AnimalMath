@@ -17,8 +17,8 @@ public class TItleScript : MonoBehaviour {
 		}
 	}
 	void LoadData(){
-		GameManager.Instance.SaveOptionData();
-		GameManager.Instance.SaveGameDataToLocal();
+//		GameManager.Instance.SaveOptionData();
+//		GameManager.Instance.SaveGameDataToLocal();
 //		if (SystemLanguage.Korean == Application.systemLanguage) {
 //			GameManager.Instance.optionData.Language = "ko";
 //		} else {

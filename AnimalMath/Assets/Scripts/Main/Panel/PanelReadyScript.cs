@@ -28,7 +28,7 @@ public class PanelReadyScript : PanelBaseScript
 
 	public override void OnInit ()
 	{
-		itemSlotScript = this.transform.GetComponentInChildren<PanelItemSlotScript> ();
+		itemSlotScript = this.transform.FindChild("PanelItemSlot").GetComponent<PanelItemSlotScript> ();
 		spriteEffect = this.transform.FindChild ("SlotEffect").transform.FindChild ("Sprite").GetComponent<UISprite> ();
 		spriteMath = this.transform.FindChild ("SlotMath").transform.FindChild ("Sprite").GetComponent<UISprite> ();
 		spritePassive = this.transform.FindChild ("SlotPassive").transform.FindChild ("Sprite").GetComponent<UISprite> ();
