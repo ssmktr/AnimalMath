@@ -57,7 +57,7 @@ public class GameManager : Singleton<GameManager>
 		save.WritePropertyName("HardScoreThird");
 		save.Write(score.HardScoreThird);
 		save.WriteObjectEnd();
-		Debug.Log(sb.ToString());
+		Debug.Log("SaveGameDta :" + sb.ToString());
 		PlayerPrefs.SetString("GAMEDATA", sb.ToString());
 	}
 	public void SaveOptionData ()
