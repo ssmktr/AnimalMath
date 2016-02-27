@@ -14,7 +14,7 @@ public class PopupBaseScript : MonoBehaviour {
 		OnInit ();
 	}
 	public virtual void Press(GameObject oBtn){
-		SoundManager.Instance.PlaySound(SoundState.Button01);
+//		SoundManager.Instance.PlaySound(SoundState.Button01);
 		OnPress (oBtn);
 	}
 	public virtual void Exit(){
