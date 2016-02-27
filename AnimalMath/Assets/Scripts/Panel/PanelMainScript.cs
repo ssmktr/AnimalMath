@@ -25,7 +25,7 @@ public class PanelMainScript : PanelBaseScript
 		GameData.SetBtn (this.transform, "BtnGameReady", "Press", this);
 		GameData.SetBtn (this.transform, "BtnOption", "Press", this);
 		GameObject oBtnGameReady = this.transform.FindChild ("BtnGameReady").gameObject;
-		gold = this.transform.FindChild("Gold").GetComponentInChildren<UILabel>();
+		gold = this.transform.FindChild("Gold").FindChild("Label").GetComponent<UILabel>();
 		GameData.SetLanguage(GameManager.Instance.optionData.Language);
 //		oBtnGameReady.transform.FindChild ("Label").GetComponent<UILabel> ().text = GameData.LocalizeText ("GameReady");
 		InitMainUI();
@@ -64,8 +64,10 @@ public class PanelMainScript : PanelBaseScript
 
 	void InitMainUI ()
 	{
-//		GameManager.Instance.Gold = GameData
 		gold.text = "Gold : " + GameManager.Instance.Gold.ToString();
+		if (GameManager.Instance.Gold > 9999) {
+			gold.text = "Gold : 9999+";
+		}
 		InitOptionIcon();
 	}
 	void InitOptionIcon()
