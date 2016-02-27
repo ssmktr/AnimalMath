@@ -91,7 +91,10 @@ public class PanelReadyScript : PanelBaseScript
 	}
 	void SetGoldText()
 	{
-		m_lbGold.text = @"Gold : " + GameManager.Instance.Gold.ToString ();
+		m_lbGold.text = "Gold : " + GameManager.Instance.Gold.ToString ();
+		if (GameManager.Instance.Gold > 9999) {
+			m_lbGold.text = "Gold : 9999+";
+		}
 	}
 
 	void ResetGold()
