@@ -13,7 +13,7 @@ public class GameManager : Singleton<GameManager>
 	public PlayerState ePlayerState = PlayerState.Rhino;
 	public PlayerData playerData = new PlayerData ();
 	public OptionData optionData = new OptionData ();
-	public int Gold = 9999;
+	public int Gold = 99999;
 	public Score score = new Score();
 
 	public void Awake ()
