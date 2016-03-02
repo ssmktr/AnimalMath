@@ -8,7 +8,7 @@ public class AdsScript : MonoBehaviour {
 	void Start () {
 	}
 	public void InitAds(){
-		Advertisement.Initialize ("104019", true);
+		Advertisement.Initialize ("104019");
 	}
 	public void PlayAds(){
 		m_sOpt.resultCallback = AdsFinished;
