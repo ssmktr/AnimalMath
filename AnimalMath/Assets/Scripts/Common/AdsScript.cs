@@ -7,8 +7,10 @@ public class AdsScript : MonoBehaviour {
 	public ShowOptions m_sOpt = new ShowOptions ();
 	void Start () {
 	}
-	public void PlayAds(){
+	public void InitAds(){
 		Advertisement.Initialize ("104019", true);
+	}
+	public void PlayAds(){
 		m_sOpt.resultCallback = AdsFinished;
 		Advertisement.Show (null, m_sOpt);
 	}

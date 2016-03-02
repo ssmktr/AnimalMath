@@ -34,6 +34,7 @@ public class MainManagerScript : MonoBehaviour
 		m_oCamera = this.transform.FindChild ("Camera").gameObject;
 		MainData = new MainDataScript ();
 		AdsData = new AdsScript ();
+		AdsData.InitAds ();
 		GameManager.Instance.InitPlayerData();
 
 		Dictionary<SceneState, string> dicTemp = new Dictionary<SceneState, string> ();
