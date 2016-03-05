@@ -4,8 +4,6 @@ using System.Collections;
 public enum SoundState
 {
 	Button01 = 0,
-	Button02,
-	Button03,
 	Max}
 ;
 
